@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ButtonStatus
+{
+    Down,
+    Held,
+    Up,
+    None
+}
+
 public class TutoriRaycastManager : MonoBehaviour
 {
     [SerializeField] IAppInfo appInfo;
@@ -9,8 +17,10 @@ public class TutoriRaycastManager : MonoBehaviour
     [SerializeField] LineRenderer rLine;
     private Transform rController;
     private Transform lController;
-    private bool rClicked;
-    private bool lClicked;
+    private ButtonStatus rStat;
+    private ButtonStatus lStat;
+
+    private Dictionary<GameObject, Color> regColor = new Dictionary<GameObject, Color>();
     // Start is called before the first frame update
     void Start()
     {
@@ -24,31 +34,60 @@ public class TutoriRaycastManager : MonoBehaviour
     {
         if (rController == null) rController = appInfo.GetRightController();
         if (lController == null) lController = appInfo.GetLeftController();
-        rClicked = appInfo.GetRightTriggerDown();
-        lClicked = appInfo.GetLeftTriggerDown();
-        checkRay(rController, rClicked, rLine);
-        checkRay(lController, lClicked, lLine);
+        rStat = appInfo.GetRightTriggerStatus();
+        lStat = appInfo.GetLeftTriggerStatus();
+        GameObject o1 = checkRay(rController, rStat, rLine);
+        GameObject o2 = checkRay(lController, lStat, lLine);
+
+        List<GameObject> toBeRemoved = new List<GameObject>();
+        foreach (GameObject o in regColor.Keys)
+        {
+            if (!o.Equals(o1) && !o.Equals(o2))
+            {
+                o.GetComponent<Renderer>().material.color = regColor[o];
+                toBeRemoved.Add(o);
+            }
+        }
+        foreach (GameObject o in toBeRemoved)
+        {
+            regColor.Remove(o);
+        }
     }
-    void checkRay(Transform controller, bool clicked, LineRenderer line)
+    GameObject checkRay(Transform controller, ButtonStatus status, LineRenderer line)
     {
         RaycastHit hit;
         Debug.DrawRay(controller.position, controller.forward, Color.red);
         if (Physics.Raycast(controller.position, controller.forward, out hit))
         {
-            if (hit.collider.gameObject.GetComponent<Runnable>() != null)
+            if (hit.collider.gameObject.GetComponent<IRunnable>() != null)
             {
                 line.SetPosition(0, controller.position);
                 line.SetPosition(1, hit.point);
                 line.enabled = true;
-                if (clicked)
+                GameObject obj = hit.collider.gameObject;
+                Color c = obj.GetComponent<Renderer>().material.color;
+                if (!regColor.ContainsKey(obj)) 
                 {
-                    hit.collider.gameObject.GetComponent<Runnable>().run();
+                    regColor.Add(obj, c);
                 }
+                Color d = new Color(Mathf.Max(0, regColor[obj].r - .2f), Mathf.Max(0, regColor[obj].g - .2f), Mathf.Max(0, regColor[obj].b - .2f), regColor[obj].a);
+                obj.GetComponent<Renderer>().material.color = d;
+                if (status == ButtonStatus.Held)
+                {
+                    d = new Color(Mathf.Max(0, regColor[obj].r - .4f), Mathf.Max(0, regColor[obj].g - .4f), Mathf.Max(0, regColor[obj].b - .4f), regColor[obj].a);
+                    obj.GetComponent<Renderer>().material.color = d;
+                } 
+                else if (status == ButtonStatus.Up)
+                {
+                    obj.GetComponent<IRunnable>().Run();
+                }
+                return obj;
             }
         }
         else
         {
             line.enabled = false;
         }
+        return null;
     }
 }

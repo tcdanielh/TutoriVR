@@ -1,237 +1,224 @@
 {
-   "action_manifest_version" : 0,
-   "alias_info" : {},
-   "app_key" : "application.generated.unity.tiltbrush.exe",
-   "bindings" : {
-      "/actions/tiltbrush" : {
-         "haptics" : [
-            {
-               "output" : "/actions/tiltbrush/out/haptic",
-               "path" : "/user/hand/left/output/haptic"
+  "app_key": "application.generated.unity.tiltbrush.exe",
+  "bindings": {
+    "/actions/tiltbrush": {
+      "chords": [],
+      "poses": [
+        {
+          "output": "/actions/tiltbrush/in/pose",
+          "path": "/user/hand/left/pose/tip"
+        },
+        {
+          "output": "/actions/tiltbrush/in/pose",
+          "path": "/user/hand/right/pose/tip"
+        }
+      ],
+      "haptics": [
+        {
+          "output": "/actions/tiltbrush/out/haptic",
+          "path": "/user/hand/left/output/haptic"
+        },
+        {
+          "output": "/actions/tiltbrush/out/haptic",
+          "path": "/user/hand/right/output/haptic"
+        }
+      ],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_trigger"
             },
-            {
-               "output" : "/actions/tiltbrush/out/haptic",
-               "path" : "/user/hand/right/output/haptic"
+            "pull": {
+              "output": "/actions/tiltbrush/in/ri_trigger"
             }
-         ],
-         "poses" : [
-            {
-               "output" : "none",
-               "path" : "/user/hand/left/pose/base"
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_trigger"
             },
-            {
-               "output" : "none",
-               "path" : "/user/hand/right/pose/base"
-            },
-            {
-               "output" : "none",
-               "path" : "/user/hand/left/pose/raw"
-            },
-            {
-               "output" : "none",
-               "path" : "/user/hand/right/pose/raw"
-            },
-            {
-               "output" : "/actions/tiltbrush/in/pose",
-               "path" : "/user/hand/left/pose/tip"
-            },
-            {
-               "output" : "/actions/tiltbrush/in/pose",
-               "path" : "/user/hand/right/pose/tip"
+            "pull": {
+              "output": "/actions/tiltbrush/in/ri_trigger"
             }
-         ],
-         "sources" : [
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_trigger"
-                  },
-                  "pull" : {
-                     "output" : "/actions/tiltbrush/in/ri_trigger"
-                  }
-               },
-               "mode" : "trigger",
-               "path" : "/user/hand/left/input/trigger"
+          }
+        },
+        {
+          "path": "/user/hand/left/input/joystick",
+          "mode": "joystick",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_padclick"
             },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_trigger"
-                  },
-                  "pull" : {
-                     "output" : "/actions/tiltbrush/in/ri_trigger"
-                  }
-               },
-               "mode" : "trigger",
-               "path" : "/user/hand/right/input/trigger"
+            "position": {
+              "output": "/actions/tiltbrush/in/ri_thumbstick"
             },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_padclick"
-                  },
-                  "position" : {
-                     "output" : "/actions/tiltbrush/in/ri_thumbstick"
-                  },
-                  "touch" : {
-                     "output" : "/actions/tiltbrush/in/ri_thumbsticktouch"
-                  }
-               },
-               "mode" : "joystick",
-               "path" : "/user/hand/left/input/joystick"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_padclick"
-                  },
-                  "position" : {
-                     "output" : "/actions/tiltbrush/in/ri_thumbstick"
-                  },
-                  "touch" : {
-                     "output" : "/actions/tiltbrush/in/ri_thumbsticktouch"
-                  }
-               },
-               "mode" : "joystick",
-               "path" : "/user/hand/right/input/joystick"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_gripbinary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/paddle_heavy"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_gripbinary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/paddle_heavy"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybutton"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/a"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybutton"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/a"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_primarybutton"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/b"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_primarybutton"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/b"
-            },
-            {
-               "inputs" : {},
-               "mode" : "none",
-               "path" : "/user/hand/left/input/skeleton/left"
-            },
-            {
-               "inputs" : {},
-               "mode" : "none",
-               "path" : "/user/hand/right/input/skeleton/left"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_gripbinary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/grip"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_gripbinary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/grip"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybutton"
-                  },
-                  "touch" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybuttontouch"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/x"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybutton"
-                  },
-                  "touch" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybuttontouch"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/x"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_primarybutton"
-                  },
-                  "touch" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybuttontouch"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/y"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/tiltbrush/in/ri_primarybutton"
-                  },
-                  "touch" : {
-                     "output" : "/actions/tiltbrush/in/ri_secondarybuttontouch"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/y"
+            "touch": {
+              "output": "/actions/tiltbrush/in/ri_thumbsticktouch"
             }
-         ]
-      }
-   },
-   "category" : "steamvr_input",
-   "controller_type" : "vive_cosmos_controller",
-   "description" : "",
-   "name" : "Tilt Brush configuration for Vive Cosmos Controller",
-   "options" : {},
-   "simulated_actions" : []
+          }
+        },
+        {
+          "path": "/user/hand/right/input/joystick",
+          "mode": "joystick",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_padclick"
+            },
+            "position": {
+              "output": "/actions/tiltbrush/in/ri_thumbstick"
+            },
+            "touch": {
+              "output": "/actions/tiltbrush/in/ri_thumbsticktouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/paddle_heavy",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_gripbinary"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/paddle_heavy",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_gripbinary"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/a",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_secondarybutton"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/a",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_secondarybutton"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_primarybutton"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_primarybutton"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/grip",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_gripbinary"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/grip",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_gripbinary"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/x",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_secondarybutton"
+            },
+            "touch": {
+              "output": "/actions/tiltbrush/in/ri_secondarybuttontouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/x",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_secondarybutton"
+            },
+            "touch": {
+              "output": "/actions/tiltbrush/in/ri_secondarybuttontouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/y",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_primarybutton"
+            },
+            "touch": {
+              "output": "/actions/tiltbrush/in/ri_secondarybuttontouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/y",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/tiltbrush/in/ri_primarybutton"
+            },
+            "touch": {
+              "output": "/actions/tiltbrush/in/ri_secondarybuttontouch"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    }
+  },
+  "controller_type": "vive_cosmos_controller",
+  "description": "",
+  "name": "Tilt Brush configuration for Vive Cosmos Controller"
 }
