@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf7219bab7fe46a1ad266029b2fee19, type: 3}
+  m_Name: Readme
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 615260baac3cf4bb9a6ccd8a8e65480b, type: 3}
+  iconMaxWidth: 256
+  title: VR Video Player
+  sections:
+  - heading: Document
+    text: Please read or download the document
+    links:
+    - linkText: Read Document
+      url: https://evereal.com/docs/vr-video-player-unity-plugin/
+  - heading: Support
+    text: If you have any issue or question, please email me at
+    links:
+    - linkText: dev@evereal.com
+      url: mailto:dev@evereal.com
+  - heading: Facebook
+    text: 
+    links:
+    - linkText: Like us on Facebook Page
+      url: https://www.facebook.com/everealgame
+  loadedLayout: 1
