@@ -29,10 +29,14 @@ public class BrushController : MonoBehaviour {
 
   private BrushDescriptor m_ActiveBrush;
 
+  private TrackButtons track; //
+
   public BrushDescriptor ActiveBrush { get { return m_ActiveBrush; } }
 
   void Awake() {
     m_Instance = this;
+            track = new TrackButtons(); //
+            track.Start(); //
   }
 
   public void SetActiveBrush(BrushDescriptor brush) {
@@ -53,6 +57,8 @@ public class BrushController : MonoBehaviour {
     if (BrushChanged != null) {
       BrushChanged(brush);
     }
+            Debug.Log("activebrush" + brush);
+            track.Update(); //
   }
 
   public void SetBrushToDefault() {
