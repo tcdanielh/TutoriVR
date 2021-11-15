@@ -24,8 +24,6 @@ public class ColorController : MonoBehaviour {
   [SerializeField] protected bool m_Hdr;
   protected Color m_CurrentColor;
 
-  // static public ColorController m_ColorController; //
-
   public event Action<ColorPickerMode, Vector3> CurrentColorSet;
 
   public bool IsHdr { get { return m_Hdr; } }
