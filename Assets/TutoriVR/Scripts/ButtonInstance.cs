@@ -7,17 +7,25 @@ public class ButtonInstance : MonoBehaviour
     // private ?? script = script being run; --> scripts/brushcontroller ActiveBrush for brush
     public TiltBrush.BrushDescriptor brushtype;
     public Color brushcolor; //consider putting all the brush stuff in a list
+    public GameObject tool;
     private Transform leftControllerPos;
     private Transform rightControllerPos;
     private bool rightTriggerDown;
     private bool leftTriggerDown;
     private TiltbrushAppInfo instance;
+    private TiltBrush.BaseSelectionTool.SelectionObject toolobj;
+    private TiltBrush.ColorController colorcon;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = new TiltbrushAppInfo();
         brushtype = null;
+        //wdata = new TiltBrush.GrabWidgetData();
+        //widgetcommand = new TiltBrush.MoveWidgetCommand();
+        //gwidget = new TiltBrush.GrabWidget();
+        toolobj = new TiltBrush.BaseSelectionTool.SelectionObject();
+        colorcon = new TiltBrush.ColorController();
     }
 
     // Update is called once per frame
@@ -40,6 +48,10 @@ public class ButtonInstance : MonoBehaviour
             brushcolor = TiltBrush.ColorController.CurrentColor.get();
         }
         */
+        //tool = toolobj.m_Object;
+        //Debug.Log(tool);
+        brushcolor = TiltBrush.ColorController.trackColor;
+        Debug.Log(brushcolor);
         leftControllerPos = instance.GetLeftController();
         rightControllerPos = instance.GetRightController();
         rightTriggerDown = instance.GetRightTriggerDown();

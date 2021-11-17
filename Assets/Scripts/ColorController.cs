@@ -23,13 +23,15 @@ public class ColorController : MonoBehaviour {
   [SerializeField] protected Color m_DefaultColor;
   [SerializeField] protected bool m_Hdr;
   protected Color m_CurrentColor;
+        public static Color trackColor;
 
   public event Action<ColorPickerMode, Vector3> CurrentColorSet;
 
   public bool IsHdr { get { return m_Hdr; } }
 
   virtual public Color CurrentColor {
-    get { return m_CurrentColor; }
+    get {
+                return m_CurrentColor;}
     set {
       m_CurrentColor = value;
       var mode = ColorPickerUtils.GetActiveMode(m_Hdr);
@@ -43,17 +45,19 @@ public class ColorController : MonoBehaviour {
   // behavior when the user is manipulating the ColorPickerSlider or ColorPickerSelector.
   virtual public void SetCurrentColorSilently(Color color) {
     m_CurrentColor = color;
-  }
+            trackColor = color;
+            //Debug.Log(trackColor);
+        }
 
   protected void TriggerCurrentColorSet(ColorPickerMode mode, Vector3 rawColor) {
     if (CurrentColorSet != null) {
       CurrentColorSet(mode, rawColor);
-    }
+            }
   }
 
   public void SetColorToDefault() {
     CurrentColor = m_DefaultColor;
-  }
+        }
 }
 
 } // namespace TiltBrush
