@@ -28,4 +28,6 @@ public class RecordingEvent : ScriptableObject
     }
 
     public bool isRecording() => recording;
+
+    
 }

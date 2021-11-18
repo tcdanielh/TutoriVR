@@ -19,7 +19,7 @@ public class CollidersIffInView : MonoBehaviour
         {
             Vector3 headToSelf = transform.position - h.position;
             float angle = Vector3.Angle(headToSelf, transform.forward) % 360;
-            Debug.Log(angle);
+            //Debug.Log(angle);
             SetCollidersEnabled(angle < 90 || angle > 270);
         }
     }

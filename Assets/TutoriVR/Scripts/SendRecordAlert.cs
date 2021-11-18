@@ -9,9 +9,9 @@ public enum ColoredAlert
     Yellow
 }
 
-public class RecordAlert : MonoBehaviour, IRunnable
+public class SendRecordAlert : MonoBehaviour, IRunnable
 {
-    [SerializeField] Record recorder;
+    [SerializeField] AlertLedger recorder;
     [SerializeField] ColoredAlert alertColor;
     public void Run()
     {
