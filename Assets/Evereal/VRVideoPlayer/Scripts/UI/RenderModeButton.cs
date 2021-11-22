@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Evereal.VRVideoPlayer
 {
-  public class RenderModeButton : ButtonBase
+  public class RenderModeButton : ButtonBase, Runnable
   {
     public RenderMode renderMode = RenderMode.NORMAL;
 
@@ -24,5 +24,10 @@ namespace Evereal.VRVideoPlayer
     {
       videoPlayerCtrl.SetVideoRenderMode(renderMode);
     }
+
+        public void run()
+        {
+            videoPlayerCtrl.SetVideoRenderMode(renderMode);
+        }
   }
 }

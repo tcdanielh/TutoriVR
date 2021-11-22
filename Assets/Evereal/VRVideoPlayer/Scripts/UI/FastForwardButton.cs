@@ -2,7 +2,7 @@
 
 namespace Evereal.VRVideoPlayer
 {
-  public class FastForwardButton : ButtonBase
+  public class FastForwardButton : ButtonBase, Runnable
   {
 		public double seconds = 5;
 
@@ -10,5 +10,10 @@ namespace Evereal.VRVideoPlayer
     {
       videoPlayerCtrl.FastForward(seconds);
     }
+
+        public void run()
+        {
+            videoPlayerCtrl.FastForward(seconds);
+        }
   }
 }

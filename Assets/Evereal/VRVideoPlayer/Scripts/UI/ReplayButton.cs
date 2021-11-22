@@ -2,11 +2,16 @@
 
 namespace Evereal.VRVideoPlayer
 {
-  public class ReplayButton : ButtonBase
+  public class ReplayButton : ButtonBase, Runnable
   {
     protected override void OnClick()
     {
       videoPlayerCtrl.ReplayVideo();
     }
+
+        public void run()
+        {
+            videoPlayerCtrl.ReplayVideo();
+        }
   }
 }

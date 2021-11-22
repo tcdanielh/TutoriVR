@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Evereal.VRVideoPlayer
 {
-  public class VolumeButton : ButtonBase
+  public class VolumeButton : ButtonBase, Runnable
   {
 
     public GameObject volumeIcon;
@@ -16,6 +16,10 @@ namespace Evereal.VRVideoPlayer
     {
       videoPlayerCtrl.ToggleAudioMute();
     }
+        public void run()
+        {
+            videoPlayerCtrl.ToggleAudioMute();
+        }
 
     public void Toggle()
     {

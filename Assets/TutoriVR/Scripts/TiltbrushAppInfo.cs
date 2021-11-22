@@ -21,7 +21,12 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     {
         leftController = GameObject.Find(leftControllerName).transform;
         rightController = GameObject.Find(rightControllerName).transform;
-        rightController.gameObject.AddComponent<Evereal.VRVideoPlayer.VRHandRaycaster>();
+        if (rightController.gameObject.GetComponent<Evereal.VRVideoPlayer.VRHandRaycaster>() == null)
+        {
+            rightController.gameObject.AddComponent<Evereal.VRVideoPlayer.VRHandRaycaster>();
+        }
+        //rightController.gameObject.AddComponent<LineRenderer>();
+        //rightController.gameObject.GetComponent<LineRenderer>().startWidth = 0.1f;
     }
 
     // Update is called once per frame

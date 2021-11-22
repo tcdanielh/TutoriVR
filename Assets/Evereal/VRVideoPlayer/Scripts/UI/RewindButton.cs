@@ -2,7 +2,7 @@
 
 namespace Evereal.VRVideoPlayer
 {
-  public class RewindButton : ButtonBase
+  public class RewindButton : ButtonBase, Runnable
   {
 		public double seconds = 5;
 
@@ -10,5 +10,10 @@ namespace Evereal.VRVideoPlayer
     {
       videoPlayerCtrl.Rewind(seconds);
     }
+
+        public void run()
+        {
+            videoPlayerCtrl.Rewind(seconds);
+        }
   }
 }

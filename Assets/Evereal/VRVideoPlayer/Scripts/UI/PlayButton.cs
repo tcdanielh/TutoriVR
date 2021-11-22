@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Evereal.VRVideoPlayer
 {
-  public class PlayButton : ButtonBase
+  public class PlayButton : ButtonBase, Runnable
   {
     public GameObject playIcon;
     public GameObject pauseIcon;
@@ -16,6 +16,12 @@ namespace Evereal.VRVideoPlayer
       videoPlayerCtrl.ToggleVideoPlay();
       Toggle();
     }
+
+        public void run()
+        {
+            videoPlayerCtrl.ToggleVideoPlay();
+            Toggle();
+        }
 
     public void Toggle()
     {

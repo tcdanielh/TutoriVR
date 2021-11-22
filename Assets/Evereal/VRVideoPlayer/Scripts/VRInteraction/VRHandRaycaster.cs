@@ -38,9 +38,10 @@ namespace Evereal.VRVideoPlayer
       get { return currentInteractible; }
     }
 
-    private void Awake()
+    private void Start()
     {
-      lineRenderer = GetComponent<LineRenderer>();
+      //lineRenderer = GetComponent<LineRenderer>();
+      //      Debug.Log("lr");
     }
 
     private void OnEnable()
@@ -109,8 +110,8 @@ namespace Evereal.VRVideoPlayer
         pointer.transform.position = endPosition;
 
       // Set line renderer
-      lineRenderer.SetPosition(0, transform.position);
-      lineRenderer.SetPosition(1, halfPosition);
+      //lineRenderer.SetPosition(0, transform.position);
+      //lineRenderer.SetPosition(1, halfPosition);
     }
 
     private void DeactiveLastInteractible()

@@ -2,11 +2,16 @@
 
 namespace Evereal.VRVideoPlayer
 {
-  public class PrevVideoButton : ButtonBase
+  public class PrevVideoButton : ButtonBase, Runnable
   {
     protected override void OnClick()
     {
       videoPlayerCtrl.PlayPrevVideo();
     }
+
+        public void run()
+        {
+            videoPlayerCtrl.PlayPrevVideo();
+        }
   }
 }

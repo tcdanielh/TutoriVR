@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Evereal.VRVideoPlayer
 {
-  public class VolumeBar : BarBase
+  public class VolumeBar : BarBase, Runnable
   {
     protected override void OnClick()
     {
@@ -12,5 +12,12 @@ namespace Evereal.VRVideoPlayer
       float volume = Mathf.Clamp(currentWidth / progressBarWidth, 0f, 1f);
 			videoPlayerCtrl.SetAudioVolume(volume);
     }
+
+        public void run()
+        {
+            float currentWidth = Vector3.Distance(startPoint.position, currentPoint);
+            float volume = Mathf.Clamp(currentWidth / progressBarWidth, 0f, 1f);
+            videoPlayerCtrl.SetAudioVolume(volume);
+        }
   }
 }
