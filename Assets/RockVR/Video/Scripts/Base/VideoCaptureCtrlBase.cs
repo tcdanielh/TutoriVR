@@ -120,6 +120,8 @@ namespace RockVR.Video
         /// </summary>
         public virtual void ToggleCapture() { }
 
+        public virtual void ContinueCapture() { }
+
         private void Start()
         {
             if (startOnAwake && status == StatusType.NOT_START)
@@ -132,6 +134,10 @@ namespace RockVR.Video
         {
             if (startOnAwake)
             {
+                if (status == StatusType.STARTED)
+                {
+                    ContinueCapture();
+                }
                 if (Time.time >= captureTime && status == StatusType.STARTED)
                 {
                     StopCapture();

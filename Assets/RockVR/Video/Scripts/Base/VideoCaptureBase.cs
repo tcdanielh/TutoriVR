@@ -493,6 +493,10 @@ namespace RockVR.Video
         /// <summary>
         /// Check if is capture panorama video.
         /// </summary>
+        /// 
+
+        public virtual void ContinueCapture() { }
+
         public bool isPanorama { get { return format == FormatType.PANORAMA; } }
         /// <summary>
         /// Check if is live streaming mode.

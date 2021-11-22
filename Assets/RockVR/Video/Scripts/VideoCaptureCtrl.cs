@@ -149,6 +149,16 @@ namespace RockVR.Video
             // Update current status.
             status = StatusType.STARTED;
         }
+
+        public override void ContinueCapture()
+        {
+            for (int i = 0; i < videoCaptures.Length; i++)
+            {
+                VideoCapture videoCapture = (VideoCapture)videoCaptures[i];
+                videoCapture.ContinueCapture();
+            }
+        }
+
         /// <summary>
         /// Stop capturing and produce the finalized video. Note that the video file
         /// may not be completely written when this method returns. In order to know

@@ -172,6 +172,32 @@ namespace RockVR.Video
                 VideoCaptureLib_Clean(libAPI);
             }
         }
+
+        public override void ContinueCapture()
+        {
+            frameRenderTexture = new RenderTexture(frameWidth, frameHeight, 24);
+            frameRenderTexture.antiAliasing = antiAliasing;
+            frameRenderTexture.wrapMode = TextureWrapMode.Clamp;
+            frameRenderTexture.filterMode = FilterMode.Trilinear;
+            frameRenderTexture.hideFlags = HideFlags.HideAndDontSave;
+            captureCamera.targetTexture = frameRenderTexture;
+
+            finalTargetTexture = new RenderTexture(frameWidth, frameHeight, 24);
+            finalTargetTexture.isPowerOfTwo = true;
+            finalTargetTexture.dimension = UnityEngine.Rendering.TextureDimension.Tex2D;
+            finalTargetTexture.useMipMap = false;
+            finalTargetTexture.antiAliasing = antiAliasing;
+            finalTargetTexture.wrapMode = TextureWrapMode.Clamp;
+            finalTargetTexture.filterMode = FilterMode.Trilinear;
+            finalTargetTexture.autoGenerateMips = false;
+            // Pixels stored in frameRenderTexture(RenderTexture) always read by frameTexture(Texture2D).
+            frameTexture = new Texture2D(frameWidth, frameHeight, TextureFormat.RGB24, false);
+            frameTexture.hideFlags = HideFlags.HideAndDontSave;
+            frameTexture.wrapMode = TextureWrapMode.Clamp;
+            frameTexture.filterMode = FilterMode.Trilinear;
+            frameTexture.hideFlags = HideFlags.HideAndDontSave;
+        }
+
         /// <summary>
         /// Start capture video.
         /// </summary>
