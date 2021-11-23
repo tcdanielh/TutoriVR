@@ -35,8 +35,8 @@ private TrackButtons track; //
 
   void Awake() {
     m_Instance = this;
-            track = new TrackButtons(); //
-            track.Start(); //
+            //track = new TrackButtons(); //
+            //track.fStart(); //
   }
 
   public void SetActiveBrush(BrushDescriptor brush) {
@@ -58,7 +58,7 @@ private TrackButtons track; //
       BrushChanged(brush);
     }
     Debug.Log("activebrush" + brush);
-            track.Update(); //
+            //track.fUpdate(); //
   }
 
   public void SetBrushToDefault() {

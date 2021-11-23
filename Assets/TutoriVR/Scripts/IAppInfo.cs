@@ -14,6 +14,8 @@ public interface IAppInfo
 
     ButtonStatus GetLeftTriggerStatus();
 
+    ButtonStatus GetUnusedButtonStatus();
+
     Vector3 GetRecordButtonPosition();
 
     Vector3 GetRecordButtonEulerAngles();

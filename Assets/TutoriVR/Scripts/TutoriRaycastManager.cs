@@ -34,7 +34,7 @@ public class TutoriRaycastManager : MonoBehaviour
     {
         if (rController == null) rController = appInfo.GetRightController();
         if (lController == null) lController = appInfo.GetLeftController();
-        rStat = appInfo.GetRightTriggerStatus();
+        rStat = appInfo.GetUnusedButtonStatus();
         lStat = appInfo.GetLeftTriggerStatus();
         GameObject o1 = checkRay(rController, rStat, rLine);
         GameObject o2 = checkRay(lController, lStat, lLine);

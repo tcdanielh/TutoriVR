@@ -49,6 +49,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Pose p_mixedreality_ExternalCamera;
         
+        private static SteamVR_Action_Single p_mixedreality_Unused;
+        
         public static SteamVR_Action_Pose tiltBrush_Pose
         {
             get
@@ -177,6 +179,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Single mixedreality_Unused
+        {
+            get
+            {
+                return SteamVR_Actions.p_mixedreality_Unused.GetCopy<SteamVR_Action_Single>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -195,7 +205,8 @@ namespace Valve.VR
                     SteamVR_Actions.tiltBrush_RI_SecondaryButton,
                     SteamVR_Actions.tiltBrush_RI_SecondaryButtonTouch,
                     SteamVR_Actions.tiltBrush_Haptic,
-                    SteamVR_Actions.mixedreality_ExternalCamera};
+                    SteamVR_Actions.mixedreality_ExternalCamera,
+                    SteamVR_Actions.mixedreality_Unused};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.tiltBrush_Pose,
                     SteamVR_Actions.tiltBrush_RI_Trigger,
@@ -211,7 +222,8 @@ namespace Valve.VR
                     SteamVR_Actions.tiltBrush_RI_PrimaryButtonTouch,
                     SteamVR_Actions.tiltBrush_RI_SecondaryButton,
                     SteamVR_Actions.tiltBrush_RI_SecondaryButtonTouch,
-                    SteamVR_Actions.mixedreality_ExternalCamera};
+                    SteamVR_Actions.mixedreality_ExternalCamera,
+                    SteamVR_Actions.mixedreality_Unused};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.tiltBrush_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -231,7 +243,8 @@ namespace Valve.VR
                     SteamVR_Actions.tiltBrush_RI_SecondaryButtonTouch};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.tiltBrush_RI_Trigger,
-                    SteamVR_Actions.tiltBrush_RI_GripAnalog};
+                    SteamVR_Actions.tiltBrush_RI_GripAnalog,
+                    SteamVR_Actions.mixedreality_Unused};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
                     SteamVR_Actions.tiltBrush_RI_Thumbstick,
                     SteamVR_Actions.tiltBrush_RI_PadDirectional};
@@ -250,7 +263,8 @@ namespace Valve.VR
                     SteamVR_Actions.tiltBrush_RI_PrimaryButton,
                     SteamVR_Actions.tiltBrush_RI_PrimaryButtonTouch,
                     SteamVR_Actions.tiltBrush_RI_SecondaryButton,
-                    SteamVR_Actions.tiltBrush_RI_SecondaryButtonTouch};
+                    SteamVR_Actions.tiltBrush_RI_SecondaryButtonTouch,
+                    SteamVR_Actions.mixedreality_Unused};
         }
         
         private static void PreInitActions()
@@ -271,6 +285,7 @@ namespace Valve.VR
             SteamVR_Actions.p_tiltBrush_RI_SecondaryButtonTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/TiltBrush/in/RI_SecondaryButtonTouch")));
             SteamVR_Actions.p_tiltBrush_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/TiltBrush/out/Haptic")));
             SteamVR_Actions.p_mixedreality_ExternalCamera = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/mixedreality/in/ExternalCamera")));
+            SteamVR_Actions.p_mixedreality_Unused = ((SteamVR_Action_Single)(SteamVR_Action.Create<SteamVR_Action_Single>("/actions/mixedreality/in/Unused")));
         }
     }
 }

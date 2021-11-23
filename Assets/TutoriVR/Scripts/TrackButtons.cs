@@ -1,22 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class TrackButtons : MonoBehaviour
+[Serializable]
+public class buttonLedger
 {
-    private Dictionary<int, ButtonInstance> captures; //dictionary: frame to button instance class
-    private ButtonInstance binstance;
-    // Start is called before the first frame update
-    public void Start()
+    public List<ButtonInstance> ledger;
+    public buttonLedger()
     {
-        captures = new Dictionary<int, ButtonInstance>();
+        ledger = new List<ButtonInstance>();
+    }
+}
+
+public class TrackButtons : RecordingEventListener
+{
+    private buttonLedger captures; //dictionary: frame to button instance class
+    private ButtonInstance binstance;
+    private float recordingStartTime;
+
+    public void fStart()
+    {
+        //captures = new Dictionary<int, ButtonInstance>();
     }
 
-    // Update is called once per frame
-    public void Update()
+    public void fUpdate()
+    {
+        //Debug.Log("HERE!!!");
+       // binstance = new ButtonInstance();
+        //captures[Time.frameCount] = binstance.createInstance();
+        //Debug.Log(Time.frameCount + " " + captures[Time.frameCount].brushtype);
+    }
+
+    public override void StartRecording()
+    {
+        captures = new buttonLedger();
+        recordingStartTime = Time.time;
+    }
+
+    public override void DuringRecord()
     {
         binstance = new ButtonInstance();
-        captures[Time.frameCount] = binstance.createInstance();
-        Debug.Log(Time.frameCount + " " + captures[Time.frameCount].brushtype);
+        binstance.createInstance(appInfo, Time.time - recordingStartTime);
+        captures.ledger.Add(binstance);
+        //Debug.Log(JsonUtility.ToJson(binstance));
+    }
+
+    public override void EndRecording()
+    {
+        string buttonJSON = JsonUtility.ToJson(captures);
+        Debug.Log(buttonJSON);
+        ExportJson("inputs", buttonJSON);
     }
 }

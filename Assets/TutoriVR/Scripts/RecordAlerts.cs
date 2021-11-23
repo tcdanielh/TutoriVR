@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class RecordAlerts : RecordingEventListener
 {
@@ -27,6 +28,7 @@ public class RecordAlerts : RecordingEventListener
         string alertJSON = ledger.toJSON();
         Debug.Log(alertJSON);
         SetChildrenActive(false);
+        ExportJson("alerts", alertJSON);
     }
 
     private void SetChildrenActive(bool setting)

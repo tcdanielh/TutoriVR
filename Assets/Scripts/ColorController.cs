@@ -58,6 +58,7 @@ public class ColorController : MonoBehaviour {
   public void SetColorToDefault() {
     CurrentColor = m_DefaultColor;
         }
-}
+
+    }
 
 } // namespace TiltBrush

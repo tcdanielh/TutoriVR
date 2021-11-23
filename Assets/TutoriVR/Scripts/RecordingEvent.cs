@@ -8,6 +8,11 @@ public class RecordingEvent : ScriptableObject
     private List<RecordingEventListener> listeners = new List<RecordingEventListener>();
     private bool recording = false;
 
+    private void OnEnable()
+    {
+        recording = false;
+    }
+
     public void Raise()
     {
         recording = !recording;

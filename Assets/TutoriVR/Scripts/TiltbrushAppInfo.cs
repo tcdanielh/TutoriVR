@@ -11,7 +11,9 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     private RaycastHit rightHit;
     private ButtonStatus rightTriggerStatus;
     private ButtonStatus leftTriggerStatus;
+    private ButtonStatus unusedButtonStatus;
     public SteamVR_Action_Single triggerAction;
+    public SteamVR_Action_Boolean uAction;
     [SerializeField] private Vector3 recButtonPos;
     [SerializeField] private Vector3 recButtonRot;
     // Start is called before the first frame update
@@ -26,11 +28,12 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     {
         if (head == null && GameObject.Find("(RenderWrapper Camera)") != null) head = GameObject.Find("(RenderWrapper Camera)").transform;
         Debug.DrawRay(rightController.position, rightController.forward, Color.red);
-        //TODO: figure out how button input works
         bool rtVal = triggerAction.GetAxis(SteamVR_Input_Sources.RightHand) > 0.99f;
         bool ltVal = triggerAction.GetAxis(SteamVR_Input_Sources.LeftHand) > 0.99f;
+        bool uval = uAction.GetState(SteamVR_Input_Sources.RightHand);
         rightTriggerStatus = UpdatedButtonStatus(rightTriggerStatus, rtVal);
         leftTriggerStatus = UpdatedButtonStatus(leftTriggerStatus, ltVal);
+        unusedButtonStatus = UpdatedButtonStatus(unusedButtonStatus, uval);
     }
 
     private ButtonStatus UpdatedButtonStatus(ButtonStatus current, bool isPressed)
@@ -66,4 +69,5 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
 
     public Vector3 GetRecordButtonEulerAngles() => recButtonRot;
 
+    public ButtonStatus GetUnusedButtonStatus() => unusedButtonStatus;
 }

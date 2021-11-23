@@ -1,42 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class ButtonInstance : MonoBehaviour
+[Serializable]
+public class ButtonInstance
 {
+    public float time;
     // private ?? script = script being run; --> scripts/brushcontroller ActiveBrush for brush
     public TiltBrush.BrushDescriptor brushtype;
     public Color brushcolor; //consider putting all the brush stuff in a list
     public GameObject tool;
-    private Transform leftControllerPos;
-    private Transform rightControllerPos;
-    private bool rightTriggerDown;
-    private bool leftTriggerDown;
-    private TiltbrushAppInfo instance;
+    public Vector3 leftControllerPos;
+    public Vector3 rightControllerPos;
+    public Quaternion leftControllerRot;
+    public Quaternion rightControllerRot;
+    public bool rightTriggerDown;
+    public bool leftTriggerDown;
+    public Color color;
+    private IAppInfo instance;
     private TiltBrush.BaseSelectionTool.SelectionObject toolobj;
     private TiltBrush.ColorController colorcon;
 
-    // Start is called before the first frame update
-    void Start()
+    // gets data of current frame
+    public ButtonInstance createInstance(IAppInfo appInfo, float timeStamp)
     {
-        instance = new TiltbrushAppInfo();
+        time = timeStamp;
+        instance = appInfo;
         brushtype = null;
         //wdata = new TiltBrush.GrabWidgetData();
         //widgetcommand = new TiltBrush.MoveWidgetCommand();
         //gwidget = new TiltBrush.GrabWidget();
         toolobj = new TiltBrush.BaseSelectionTool.SelectionObject();
-        colorcon = new TiltBrush.ColorController();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // gets data of current frame
-    public ButtonInstance createInstance()
-    {
+        colorcon = GameObject.Find("App").GetComponent<TiltBrush.BrushColorController>();
+        color = colorcon.CurrentColor;
         // script = check script that is running
         if (TiltBrush.BrushController.m_Instance != null)
         {
@@ -52,10 +49,14 @@ public class ButtonInstance : MonoBehaviour
         //Debug.Log(tool);
         brushcolor = TiltBrush.ColorController.trackColor;
         Debug.Log(brushcolor);
-        leftControllerPos = instance.GetLeftController();
-        rightControllerPos = instance.GetRightController();
-        rightTriggerDown = instance.GetRightTriggerDown();
-        leftTriggerDown = instance.GetLeftTriggerDown();
+        leftControllerPos = instance.GetLeftController().position;
+        rightControllerPos = instance.GetRightController().position;
+        leftControllerRot = instance.GetLeftController().rotation;
+        rightControllerRot = instance.GetRightController().rotation;
+        ButtonStatus r = instance.GetRightTriggerStatus();
+        ButtonStatus l = instance.GetLeftTriggerStatus();
+        rightTriggerDown = (r == ButtonStatus.Down || r == ButtonStatus.Held);
+        leftTriggerDown = (l == ButtonStatus.Down || l == ButtonStatus.Held);
         return this;
     }
 }

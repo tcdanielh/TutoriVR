@@ -24,5 +24,13 @@ namespace Valve.VR
                 return SteamVR_Actions.mixedreality_ExternalCamera;
             }
         }
+        
+        public virtual SteamVR_Action_Single Unused
+        {
+            get
+            {
+                return SteamVR_Actions.mixedreality_Unused;
+            }
+        }
     }
 }
