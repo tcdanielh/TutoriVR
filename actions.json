@@ -71,6 +71,14 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/TiltBrush/in/unused",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/TiltBrush/in/NewAction",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/TiltBrush/out/Haptic",
       "type": "vibration",
       "requirement": "suggested"
@@ -79,6 +87,10 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/mixedreality/in/unused",
+      "type": "vector1"
     }
   ],
   "action_sets": [

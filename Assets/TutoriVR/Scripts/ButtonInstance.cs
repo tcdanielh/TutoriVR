@@ -54,8 +54,8 @@ public class ButtonInstance : MonoBehaviour
         Debug.Log(brushcolor);
         leftControllerPos = instance.GetLeftController();
         rightControllerPos = instance.GetRightController();
-        rightTriggerDown = instance.GetRightTriggerDown();
-        leftTriggerDown = instance.GetLeftTriggerDown();
+        // rightTriggerDown = instance.GetRightTriggerDown();
+        // leftTriggerDown = instance.GetLeftTriggerDown();
         return this;
     }
 }

@@ -6,8 +6,13 @@ public interface IAppInfo
     Transform GetLeftController();
 
     Transform GetRightController();
+    ButtonStatus GetRightTriggerStatus();
 
-    bool GetRightTriggerDown();
+    ButtonStatus GetLeftTriggerStatus();
 
-    bool GetLeftTriggerDown();
+    ButtonStatus GetUnusedButtonStatus();
+
+    // bool GetRightTriggerDown();
+
+    // bool GetLeftTriggerDown();
 }

@@ -12377,7 +12377,10 @@ MonoBehaviour:
   leftControllerName: Controller (wand)
   rightControllerName: Controller (brush)
   triggerAction:
-    actionPath: /actions/TiltBrush/in/RI_Trigger
+    actionPath: /actions/mixedreality/in/unused
+    needsReinit: 0
+  uAction:
+    actionPath: /actions/mixedreality/in/unused
     needsReinit: 0
 --- !u!1 &835580259
 GameObject:

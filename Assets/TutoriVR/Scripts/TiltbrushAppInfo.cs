@@ -11,11 +11,15 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     private Transform leftController;
     private Transform rightController;
     private RaycastHit rightHit;
-    private bool rightTrigger;
-    private bool leftTrigger;
-    private bool rightTriggerDown;
-    private bool leftTriggerDown;
+    // private bool rightTrigger;
+    // private bool leftTrigger;
+    // private bool rightTriggerDown;
+    // private bool leftTriggerDown;
+    private ButtonStatus rightTriggerStatus;
+    private ButtonStatus leftTriggerStatus;
+    private ButtonStatus unusedButtonStatus;
     public SteamVR_Action_Single triggerAction;
+    public SteamVR_Action_Boolean uAction;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,14 +40,41 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
         //TODO: figure out how button input works
         bool rtVal = triggerAction.GetAxis(SteamVR_Input_Sources.RightHand) > 0.99f;
         bool ltVal = triggerAction.GetAxis(SteamVR_Input_Sources.LeftHand) > 0.99f;
-        rightTriggerDown = rtVal && !rightTrigger;
-        leftTriggerDown = ltVal && !leftTrigger;
-        rightTrigger = rtVal;
-        leftTrigger = ltVal;
+        // rightTriggerDown = rtVal && !rightTrigger;
+        // leftTriggerDown = ltVal && !leftTrigger;
+        // rightTrigger = rtVal;
+        // leftTrigger = ltVal;
+        bool uval = uAction.GetState(SteamVR_Input_Sources.RightHand);
+        rightTriggerStatus = UpdatedButtonStatus(rightTriggerStatus, rtVal);
+        leftTriggerStatus = UpdatedButtonStatus(leftTriggerStatus, ltVal);
+        unusedButtonStatus = UpdatedButtonStatus(unusedButtonStatus, uval);
     }
-
+    private ButtonStatus UpdatedButtonStatus(ButtonStatus current, bool isPressed)
+    {
+        if (isPressed)
+        {
+            if (current == ButtonStatus.None) 
+                return ButtonStatus.Down;
+            return ButtonStatus.Held;
+        }
+        else
+        {
+            if (current == ButtonStatus.Held || current == ButtonStatus.Down)
+            {
+                return ButtonStatus.Up;
+            } 
+            else
+            {
+                return ButtonStatus.None;
+            }
+        }
+    }
     public Transform GetLeftController() => leftController;
     public Transform GetRightController() => rightController;
-    public bool GetRightTriggerDown() => rightTriggerDown;
-    public bool GetLeftTriggerDown() => leftTriggerDown;
+    // public bool GetRightTriggerDown() => rightTriggerDown;
+    // public bool GetLeftTriggerDown() => leftTriggerDown;
+    public ButtonStatus GetRightTriggerStatus() => rightTriggerStatus;
+    public ButtonStatus GetLeftTriggerStatus() => leftTriggerStatus;
+
+    public ButtonStatus GetUnusedButtonStatus() => unusedButtonStatus;
 }

@@ -24,8 +24,8 @@ public class TutoriRaycastManager : MonoBehaviour
     {
         if (rController == null) rController = appInfo.GetRightController();
         if (lController == null) lController = appInfo.GetLeftController();
-        rClicked = appInfo.GetRightTriggerDown();
-        lClicked = appInfo.GetLeftTriggerDown();
+        // rClicked = appInfo.GetRightTriggerDown();
+        // lClicked = appInfo.GetLeftTriggerDown();
         checkRay(rController, rClicked, rLine);
         checkRay(lController, lClicked, lLine);
     }
