@@ -6,6 +6,7 @@ public interface IAppInfo
     Transform GetLeftController();
 
     Transform GetRightController();
+    Transform GetHead();
     ButtonStatus GetRightTriggerStatus();
 
     ButtonStatus GetLeftTriggerStatus();

@@ -12348,6 +12348,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 231099132}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &831492758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831492757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e964a030fd7774da4b706baa7f5b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &831492761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12374,8 +12386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049e8452ecb9e03449c9a498a251bbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftControllerName: Controller (wand)
-  rightControllerName: Controller (brush)
+  leftControllerName: 
+  rightControllerName: 
+  head: {fileID: 0}
   triggerAction:
     actionPath: /actions/mixedreality/in/unused
     needsReinit: 0

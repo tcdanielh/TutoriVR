@@ -11,6 +11,7 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     private Transform leftController;
     private Transform rightController;
     private RaycastHit rightHit;
+    [SerializeField] private Transform head;
     // private bool rightTrigger;
     // private bool leftTrigger;
     // private bool rightTriggerDown;
@@ -71,6 +72,7 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     }
     public Transform GetLeftController() => leftController;
     public Transform GetRightController() => rightController;
+    public Transform GetHead() => head;
     // public bool GetRightTriggerDown() => rightTriggerDown;
     // public bool GetLeftTriggerDown() => leftTriggerDown;
     public ButtonStatus GetRightTriggerStatus() => rightTriggerStatus;
