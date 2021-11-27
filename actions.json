@@ -90,7 +90,8 @@
     },
     {
       "name": "/actions/mixedreality/in/Unused",
-      "type": "vector1"
+      "type": "vector1",
+      "requirement": "optional"
     }
   ],
   "action_sets": [

@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum ButtonStatus
+{
+    Down,
+    Held,
+    Up,
+    None
+}
 public class TutoriRaycastManager : MonoBehaviour
 {
     [SerializeField] IAppInfo appInfo;
@@ -26,7 +32,8 @@ public class TutoriRaycastManager : MonoBehaviour
     {
         if (rController == null) rController = appInfo.GetRightController();
         if (lController == null) lController = appInfo.GetLeftController();
-        rStat = appInfo.GetUnusedButtonStatus();
+        // rStat = appInfo.GetUnusedButtonStatus();
+        rStat = appInfo.GetRightTriggerStatus();
         lStat = appInfo.GetLeftTriggerStatus();
         // checkRay(rController, rStat, line);
         // rClicked = appInfo.GetRightTriggerDown();
@@ -51,6 +58,7 @@ public class TutoriRaycastManager : MonoBehaviour
 
                 // } 
                 // else
+                Debug.Log(status == ButtonStatus.Down);
                  if (status == ButtonStatus.Up)
                 {
                     hit.collider.gameObject.GetComponent<Runnable>().run();

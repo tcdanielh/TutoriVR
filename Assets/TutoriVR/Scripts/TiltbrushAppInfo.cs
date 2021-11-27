@@ -26,10 +26,10 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     {
         leftController = GameObject.Find(leftControllerName).transform;
         rightController = GameObject.Find(rightControllerName).transform;
-        if (rightController.gameObject.GetComponent<Evereal.VRVideoPlayer.VRHandRaycaster>() == null)
-        {
-            rightController.gameObject.AddComponent<Evereal.VRVideoPlayer.VRHandRaycaster>();
-        }
+        // if (rightController.gameObject.GetComponent<Evereal.VRVideoPlayer.VRHandRaycaster>() == null)
+        // {
+        //     rightController.gameObject.AddComponent<Evereal.VRVideoPlayer.VRHandRaycaster>();
+        // }
         //rightController.gameObject.AddComponent<LineRenderer>();
         //rightController.gameObject.GetComponent<LineRenderer>().startWidth = 0.1f;
     }
@@ -41,10 +41,10 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
         //TODO: figure out how button input works
         bool rtVal = triggerAction.GetAxis(SteamVR_Input_Sources.RightHand) > 0.99f;
         bool ltVal = triggerAction.GetAxis(SteamVR_Input_Sources.LeftHand) > 0.99f;
-        rightTriggerDown = rtVal && !rightTrigger;
-        leftTriggerDown = ltVal && !leftTrigger;
-        rightTrigger = rtVal;
-        leftTrigger = ltVal;
+        // rightTriggerDown = rtVal && !rightTrigger;
+        // leftTriggerDown = ltVal && !leftTrigger;
+        // rightTrigger = rtVal;
+        // leftTrigger = ltVal;
         bool uval = uAction.GetState(SteamVR_Input_Sources.RightHand);
         rightTriggerStatus = UpdatedButtonStatus(rightTriggerStatus, rtVal);
         leftTriggerStatus = UpdatedButtonStatus(leftTriggerStatus, ltVal);

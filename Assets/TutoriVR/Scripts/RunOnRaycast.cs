@@ -1,13 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum ButtonStatus
-{
-    Down,
-    Held,
-    Up,
-    None
-}
+
 public class RunOnRaycast : MonoBehaviour
 {
     [SerializeField] IAppInfo appInfo;

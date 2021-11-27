@@ -12395,7 +12395,7 @@ MonoBehaviour:
   rightControllerName: 
   head: {fileID: 0}
   triggerAction:
-    actionPath: /actions/mixedreality/in/Unused
+    actionPath: /actions/TiltBrush/in/RI_Trigger
     needsReinit: 0
   uAction:
     actionPath: 
@@ -29493,7 +29493,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836180416}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9053110a24012c749907851e557d299c, type: 3}
   m_Name: 
