@@ -25,11 +25,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Single unused
+        public virtual SteamVR_Action_Single Unused
         {
             get
             {
-                return SteamVR_Actions.mixedreality_unused;
+                return SteamVR_Actions.mixedreality_Unused;
             }
         }
     }

@@ -11196,6 +11196,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1892754228884472228, guid: 4cefd3d137eabaa44bd583fce191f27f,
+        type: 3}
+      propertyPath: triggerAction.actionPath
+      value: /actions/mixedreality/in/Unused
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cefd3d137eabaa44bd583fce191f27f, type: 3}
 --- !u!1001 &729042392
@@ -12390,10 +12395,10 @@ MonoBehaviour:
   rightControllerName: 
   head: {fileID: 0}
   triggerAction:
-    actionPath: /actions/mixedreality/in/unused
+    actionPath: /actions/mixedreality/in/Unused
     needsReinit: 0
   uAction:
-    actionPath: /actions/mixedreality/in/unused
+    actionPath: 
     needsReinit: 0
 --- !u!1 &835580259
 GameObject:
