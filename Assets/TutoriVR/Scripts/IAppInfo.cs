@@ -13,7 +13,7 @@ public interface IAppInfo
 
     ButtonStatus GetUnusedButtonStatus();
 
-    // bool GetRightTriggerDown();
+    bool GetRightTriggerDown();
 
-    // bool GetLeftTriggerDown();
+    bool GetLeftTriggerDown();
 }

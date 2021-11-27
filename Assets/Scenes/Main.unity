@@ -11199,7 +11199,7 @@ PrefabInstance:
     - target: {fileID: 1892754228884472228, guid: 4cefd3d137eabaa44bd583fce191f27f,
         type: 3}
       propertyPath: triggerAction.actionPath
-      value: /actions/mixedreality/in/Unused
+      value: /actions/TiltBrush/in/RI_Trigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cefd3d137eabaa44bd583fce191f27f, type: 3}
@@ -29499,6 +29499,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 0}
+--- !u!1 &1838966447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1892754228884472226, guid: 4cefd3d137eabaa44bd583fce191f27f,
+    type: 3}
+  m_PrefabInstance: {fileID: 714849669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1838966451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838966447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e964a030fd7774da4b706baa7f5b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1839658907
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,10 +12,10 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     private Transform rightController;
     private RaycastHit rightHit;
     [SerializeField] private Transform head;
-    // private bool rightTrigger;
-    // private bool leftTrigger;
-    // private bool rightTriggerDown;
-    // private bool leftTriggerDown;
+    private bool rightTrigger;
+    private bool leftTrigger;
+    private bool rightTriggerDown;
+    private bool leftTriggerDown;
     private ButtonStatus rightTriggerStatus;
     private ButtonStatus leftTriggerStatus;
     private ButtonStatus unusedButtonStatus;
@@ -41,10 +41,10 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
         //TODO: figure out how button input works
         bool rtVal = triggerAction.GetAxis(SteamVR_Input_Sources.RightHand) > 0.99f;
         bool ltVal = triggerAction.GetAxis(SteamVR_Input_Sources.LeftHand) > 0.99f;
-        // rightTriggerDown = rtVal && !rightTrigger;
-        // leftTriggerDown = ltVal && !leftTrigger;
-        // rightTrigger = rtVal;
-        // leftTrigger = ltVal;
+        rightTriggerDown = rtVal && !rightTrigger;
+        leftTriggerDown = ltVal && !leftTrigger;
+        rightTrigger = rtVal;
+        leftTrigger = ltVal;
         bool uval = uAction.GetState(SteamVR_Input_Sources.RightHand);
         rightTriggerStatus = UpdatedButtonStatus(rightTriggerStatus, rtVal);
         leftTriggerStatus = UpdatedButtonStatus(leftTriggerStatus, ltVal);
@@ -73,8 +73,8 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     public Transform GetLeftController() => leftController;
     public Transform GetRightController() => rightController;
     public Transform GetHead() => head;
-    // public bool GetRightTriggerDown() => rightTriggerDown;
-    // public bool GetLeftTriggerDown() => leftTriggerDown;
+    public bool GetRightTriggerDown() => rightTriggerDown;
+    public bool GetLeftTriggerDown() => leftTriggerDown;
     public ButtonStatus GetRightTriggerStatus() => rightTriggerStatus;
     public ButtonStatus GetLeftTriggerStatus() => leftTriggerStatus;
 
