@@ -25,7 +25,7 @@ namespace Evereal.VRVideoPlayer
       videoPlayerCtrl.SetVideoRenderMode(renderMode);
     }
 
-        public void run()
+        public void run(Vector3 currentPoint)
         {
             videoPlayerCtrl.SetVideoRenderMode(renderMode);
         }

@@ -25,7 +25,7 @@ namespace Evereal.VRVideoPlayer
       videoPlayerCtrl.SetVideoStereoMode(stereoMode);
     }
 
-        public void run()
+        public void run(Vector3 currentPoint)
         {
             videoPlayerCtrl.SetVideoStereoMode(stereoMode);
         }

@@ -17,7 +17,7 @@ namespace Evereal.VRVideoPlayer
       Toggle();
     }
 
-        public void run()
+        public void  run(Vector3 currentPoint)
         {
             videoPlayerCtrl.ToggleVideoPlay();
             Toggle();

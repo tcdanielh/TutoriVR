@@ -21,7 +21,7 @@ namespace Evereal.VRVideoPlayer
       Toggle();
     }
 
-    public void run()
+    public void run(Vector3 currentPoint)
     {
             menuPanel.SetActive(!isMenuPanelOpen);
             isMenuPanelOpen = !isMenuPanelOpen;

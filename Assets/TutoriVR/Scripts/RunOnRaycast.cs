@@ -51,7 +51,7 @@ public class RunOnRaycast : MonoBehaviour
                 } 
                 else if (status == ButtonStatus.Up)
                 {
-                     function.run();
+                     function.run(hit.point);
                 }
                 // if (appInfo.GetRightTriggerDown())
                 // {

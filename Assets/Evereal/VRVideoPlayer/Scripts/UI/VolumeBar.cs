@@ -13,7 +13,7 @@ namespace Evereal.VRVideoPlayer
 			videoPlayerCtrl.SetAudioVolume(volume);
     }
 
-        public void run()
+        public void run(Vector3 currentpoint)
         {
             float currentWidth = Vector3.Distance(startPoint.position, currentPoint);
             float volume = Mathf.Clamp(currentWidth / progressBarWidth, 0f, 1f);

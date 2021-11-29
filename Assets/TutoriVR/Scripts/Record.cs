@@ -22,7 +22,7 @@ public class Record : MonoBehaviour, Runnable
         }
     }
 
-    public void run()
+    public void run(Vector3 currentPoint)
     {
         if (recording)
         {

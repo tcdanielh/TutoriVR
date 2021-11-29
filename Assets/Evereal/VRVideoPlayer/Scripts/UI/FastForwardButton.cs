@@ -1,5 +1,5 @@
 ﻿/* Copyright (c) 2020-present Evereal. All rights reserved. */
-
+using UnityEngine;
 namespace Evereal.VRVideoPlayer
 {
   public class FastForwardButton : ButtonBase, Runnable
@@ -11,7 +11,7 @@ namespace Evereal.VRVideoPlayer
       videoPlayerCtrl.FastForward(seconds);
     }
 
-        public void run()
+        public void run(Vector3 currentPoint)
         {
             videoPlayerCtrl.FastForward(seconds);
         }

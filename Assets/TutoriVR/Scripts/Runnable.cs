@@ -1,4 +1,6 @@
-﻿public interface Runnable
+﻿using UnityEngine;
+public interface Runnable
 {
-    void run();
+    void run(Vector3 currentpoint);
+
 }
