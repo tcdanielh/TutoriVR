@@ -45,18 +45,18 @@ public class RunOnRaycast : MonoBehaviour
                 line.SetPosition(0, appInfo.GetRightController().position);
                 line.SetPosition(1, hit.point);
                 line.enabled = true;
-                if (status == ButtonStatus.Held)
-                {
-
-                } 
-                else if (status == ButtonStatus.Up)
-                {
-                     function.run(hit.point);
-                }
-                // if (appInfo.GetRightTriggerDown())
+                // if (status == ButtonStatus.Held)
                 // {
-                //     function.run();
+
+                // } 
+                // else if (status == ButtonStatus.Up)
+                // {
+                //      function.run(hit.point);
                 // }
+                if (appInfo.GetRightTriggerDown())
+                {
+                    function.run(hit.point);
+                }
             }
         }
         else

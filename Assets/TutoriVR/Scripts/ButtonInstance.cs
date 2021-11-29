@@ -54,13 +54,13 @@ public class ButtonInstance : MonoBehaviour
         Debug.Log(brushcolor);
         leftControllerPos = instance.GetLeftController();
         rightControllerPos = instance.GetRightController();
-        ButtonStatus r = instance.GetRightTriggerStatus();
-        ButtonStatus l = instance.GetLeftTriggerStatus();
-        rightTriggerDown = (r == ButtonStatus.Down || r == ButtonStatus.Held);
-        leftTriggerDown = (l == ButtonStatus.Down || l == ButtonStatus.Held);
-        return this;
-        // rightTriggerDown = instance.GetRightTriggerDown();
-        // leftTriggerDown = instance.GetLeftTriggerDown();
+        // ButtonStatus r = instance.GetRightTriggerStatus();
+        // ButtonStatus l = instance.GetLeftTriggerStatus();
+        // rightTriggerDown = (r == ButtonStatus.Down || r == ButtonStatus.Held);
+        // leftTriggerDown = (l == ButtonStatus.Down || l == ButtonStatus.Held);
         // return this;
+        rightTriggerDown = instance.GetRightTriggerDown();
+        leftTriggerDown = instance.GetLeftTriggerDown();
+        return this;
     }
 }

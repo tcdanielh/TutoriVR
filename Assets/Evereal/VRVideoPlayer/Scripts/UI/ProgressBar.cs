@@ -16,6 +16,9 @@ namespace Evereal.VRVideoPlayer
         {
             float currentWidth = Vector3.Distance(startPoint.position, currentPoint);
             float progress = Mathf.Clamp(currentWidth / progressBarWidth, 0f, 1f);
+            //             Debug.Log(startPoint.position);
+            //  Debug.Log(currentPoint);
+            // Debug.Log(currentWidth);
             videoPlayerCtrl.videoTime = videoPlayerCtrl.videoLength * progress;
         }
   }
