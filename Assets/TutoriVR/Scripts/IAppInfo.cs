@@ -8,6 +8,8 @@ public interface IAppInfo
 
     Transform GetRightController();
 
+    Transform GetSceneRootTransform();
+
     Transform GetHead();
 
     ButtonStatus GetRightTriggerStatus();

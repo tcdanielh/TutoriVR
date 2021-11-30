@@ -7,6 +7,7 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
 {
     private Transform leftController;
     private Transform rightController;
+    private Transform sceneTransform;
     [SerializeField] private Transform head;
     private RaycastHit rightHit;
     private ButtonStatus rightTriggerStatus;
@@ -21,6 +22,7 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     {
         leftController = GameObject.Find("Controller (wand)").transform;
         rightController = GameObject.Find("Controller (brush)").transform;
+        sceneTransform = GameObject.Find("SceneParent").transform;
     }
 
     // Update is called once per frame
@@ -59,6 +61,8 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
 
     public Transform GetLeftController() => leftController;
     public Transform GetRightController() => rightController;
+
+    public Transform GetSceneRootTransform() => sceneTransform;
 
     public ButtonStatus GetRightTriggerStatus() => rightTriggerStatus;
     public ButtonStatus GetLeftTriggerStatus() => leftTriggerStatus;

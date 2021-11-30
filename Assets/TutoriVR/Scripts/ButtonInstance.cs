@@ -49,14 +49,30 @@ public class ButtonInstance
         //Debug.Log(tool);
         brushcolor = TiltBrush.ColorController.trackColor;
         Debug.Log(brushcolor);
-        leftControllerPos = instance.GetLeftController().position;
-        rightControllerPos = instance.GetRightController().position;
-        leftControllerRot = instance.GetLeftController().rotation;
-        rightControllerRot = instance.GetRightController().rotation;
+        Transform lc = instance.GetLeftController();
+        Transform rc = instance.GetRightController();
+        Transform root = instance.GetSceneRootTransform();
+        (leftControllerPos, leftControllerRot) = getRelativePosRot(lc, root);
+        (rightControllerPos, rightControllerRot) = getRelativePosRot(rc, root);
+        //leftControllerPos = instance.GetLeftController().position;
+        //rightControllerPos = instance.GetRightController().position;
+        //leftControllerRot = instance.GetLeftController().rotation;
+        //rightControllerRot = instance.GetRightController().rotation;
         ButtonStatus r = instance.GetRightTriggerStatus();
         ButtonStatus l = instance.GetLeftTriggerStatus();
         rightTriggerDown = (r == ButtonStatus.Down || r == ButtonStatus.Held);
         leftTriggerDown = (l == ButtonStatus.Down || l == ButtonStatus.Held);
+        Debug.Log("Default: " + leftControllerPos + " | " + leftControllerRot);
         return this;
+    }
+
+    private (Vector3, Quaternion) getRelativePosRot(Transform t, Transform root)
+    {
+        GameObject obj = GameObject.Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere), t.position, t.rotation);
+        obj.transform.SetParent(root, true);
+        Vector3 pos = obj.transform.localPosition;
+        Quaternion rot = obj.transform.localRotation;
+        GameObject.Destroy(obj);
+        return (pos, rot);
     }
 }

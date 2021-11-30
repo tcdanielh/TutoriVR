@@ -32757,7 +32757,12 @@ PrefabInstance:
     - target: {fileID: 3100108756367445098, guid: 4cefd3d137eabaa44bd583fce191f27f,
         type: 3}
       propertyPath: triggerAction.actionPath
-      value: /actions/mixedreality/in/Unused
+      value: /actions/TiltBrush/in/RI_Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100108756367445098, guid: 4cefd3d137eabaa44bd583fce191f27f,
+        type: 3}
+      propertyPath: uAction.actionPath
+      value: /actions/TiltBrush/in/RI_SecondaryButton
       objectReference: {fileID: 0}
     - target: {fileID: 3100108756367445100, guid: 4cefd3d137eabaa44bd583fce191f27f,
         type: 3}
