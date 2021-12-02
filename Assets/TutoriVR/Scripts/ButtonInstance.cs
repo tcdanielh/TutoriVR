@@ -10,7 +10,7 @@ public class ButtonInstance
     // private ?? script = script being run; --> scripts/brushcontroller ActiveBrush for brush
     public TiltBrush.BrushDescriptor brushtype;
     public Color brushcolor; //consider putting all the brush stuff in a list
-    public TiltBrush.BaseTool tool;
+    public TiltBrush.BaseTool.ToolType tool;
     public Vector3 leftControllerPos;
     public Vector3 rightControllerPos;
     public Quaternion leftControllerRot;
@@ -47,9 +47,8 @@ public class ButtonInstance
         }
         */
         toolobj = GameObject.Find("SketchSurface").GetComponent<TiltBrush.SketchSurfacePanel>();
-        tool = toolobj.ActiveTool;
+        tool = toolobj.ActiveToolType;
         Debug.Log(tool);
-        Debug.Log(toolobj.ActiveToolType);
         brushcolor = TiltBrush.ColorController.trackColor;
         Debug.Log(brushcolor);
         Transform lc = instance.GetLeftController();
