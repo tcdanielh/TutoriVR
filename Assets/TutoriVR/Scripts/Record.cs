@@ -15,6 +15,8 @@ public class Record : MonoBehaviour, IRunnable
     [SerializeField] RecordingEvent Event;
 
     private IAppInfo appInfo;
+
+    [SerializeField] VideoCapture VC;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,9 @@ public class Record : MonoBehaviour, IRunnable
         }
         else
         {
+            RecordingEventListener.recordID = Time.time.ToString();
+            PathConfig.SaveFolder = RecordingEventListener.ExportPath();
+            VC.customPathFolder = RecordingEventListener.ExportPath();
             VideoCaptureCtrl.instance.StartCapture();
             // VideoPlayer.instance.SetRootFolder();
             // VideoPlayer.instance.NextVideo();

@@ -64,7 +64,7 @@ public class ButtonInstance
         ButtonStatus l = instance.GetLeftTriggerStatus();
         rightTriggerDown = (r == ButtonStatus.Down || r == ButtonStatus.Held);
         leftTriggerDown = (l == ButtonStatus.Down || l == ButtonStatus.Held);
-        Debug.Log("Default: " + leftControllerPos + " | " + leftControllerRot);
+        //Debug.Log("Default: " + leftControllerPos + " | " + leftControllerRot);
         return this;
     }
 

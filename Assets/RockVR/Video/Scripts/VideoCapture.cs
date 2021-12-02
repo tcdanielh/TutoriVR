@@ -233,6 +233,7 @@ namespace RockVR.Video
             if (mode == ModeType.LOCAL)
             {
                 filePath = PathConfig.SaveFolder + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+                Debug.Log("File Path is: " + filePath);
             }
             // Create a RenderTexture with desired frame size for dedicated
             // camera capture to store pixels in GPU.

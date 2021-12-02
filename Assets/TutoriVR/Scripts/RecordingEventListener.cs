@@ -7,9 +7,10 @@ public abstract class RecordingEventListener : MonoBehaviour
 {
     public RecordingEvent Event;
     public IAppInfo appInfo;
+    public static string recordID;
     public static void ExportJson(string name, string json) 
     {
-        string d = Application.persistentDataPath + "/CaptureAt" + Time.time;
+        string d = Application.persistentDataPath + "/CaptureAt" + recordID;
         if (!Directory.Exists(d)) Directory.CreateDirectory(d);
         string p = d + "/" + name + ".json";
         Debug.Log(p);
@@ -17,7 +18,14 @@ public abstract class RecordingEventListener : MonoBehaviour
         StreamWriter writer = new StreamWriter(p);
         writer.Write(json);
         writer.Close();
-    } 
+    }
+
+    public static string ExportPath() 
+    { 
+        string d = Application.persistentDataPath + "/CaptureAt" + recordID + "/";
+        if (!Directory.Exists(d)) Directory.CreateDirectory(d);
+        return d;
+    }
 
     private void OnEnable()
     {
