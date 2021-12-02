@@ -9,7 +9,7 @@ public abstract class RecordingEventListener : MonoBehaviour
     public IAppInfo appInfo;
     public static void ExportJson(string name, string json) 
     {
-        string d = Application.dataPath + "/CaptureAt" + Time.time;
+        string d = Application.persistentDataPath + "/CaptureAt" + Time.time;
         if (!Directory.Exists(d)) Directory.CreateDirectory(d);
         string p = d + "/" + name + ".txt";
         Debug.Log(p);
