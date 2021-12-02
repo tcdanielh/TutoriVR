@@ -11,7 +11,7 @@ public abstract class RecordingEventListener : MonoBehaviour
     {
         string d = Application.persistentDataPath + "/CaptureAt" + Time.time;
         if (!Directory.Exists(d)) Directory.CreateDirectory(d);
-        string p = d + "/" + name + ".txt";
+        string p = d + "/" + name + ".json";
         Debug.Log(p);
         //if (!File.Exists(p)) File.Create(p);
         StreamWriter writer = new StreamWriter(p);
