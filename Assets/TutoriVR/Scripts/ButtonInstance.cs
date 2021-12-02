@@ -10,7 +10,7 @@ public class ButtonInstance
     // private ?? script = script being run; --> scripts/brushcontroller ActiveBrush for brush
     public TiltBrush.BrushDescriptor brushtype;
     public Color brushcolor; //consider putting all the brush stuff in a list
-    public GameObject tool;
+    public TiltBrush.BaseTool tool;
     public Vector3 leftControllerPos;
     public Vector3 rightControllerPos;
     public Quaternion leftControllerRot;
@@ -19,8 +19,9 @@ public class ButtonInstance
     public bool leftTriggerDown;
     public Color color;
     private IAppInfo instance;
-    private TiltBrush.BaseSelectionTool.SelectionObject toolobj;
+    //private TiltBrush.BaseSelectionTool.SelectionObject toolobj;
     private TiltBrush.ColorController colorcon;
+    private TiltBrush.SketchSurfacePanel toolobj;
 
     // gets data of current frame
     public ButtonInstance createInstance(IAppInfo appInfo, float timeStamp)
@@ -31,7 +32,7 @@ public class ButtonInstance
         //wdata = new TiltBrush.GrabWidgetData();
         //widgetcommand = new TiltBrush.MoveWidgetCommand();
         //gwidget = new TiltBrush.GrabWidget();
-        toolobj = new TiltBrush.BaseSelectionTool.SelectionObject();
+        //toolobj = new TiltBrush.BaseSelectionTool.SelectionObject();
         colorcon = GameObject.Find("App").GetComponent<TiltBrush.BrushColorController>();
         color = colorcon.CurrentColor;
         // script = check script that is running
@@ -45,8 +46,10 @@ public class ButtonInstance
             brushcolor = TiltBrush.ColorController.CurrentColor.get();
         }
         */
-        //tool = toolobj.m_Object;
-        //Debug.Log(tool);
+        toolobj = GameObject.Find("SketchSurface").GetComponent<TiltBrush.SketchSurfacePanel>();
+        tool = toolobj.ActiveTool;
+        Debug.Log(tool);
+        Debug.Log(toolobj.ActiveToolType);
         brushcolor = TiltBrush.ColorController.trackColor;
         Debug.Log(brushcolor);
         Transform lc = instance.GetLeftController();
