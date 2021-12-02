@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Threading;
+using System.Runtime.InteropServices;
+using RockVR.Video;
 
+
+[RequireComponent(typeof(Camera))]
 public class Record : MonoBehaviour, IRunnable
 {
     [SerializeField] Material recordButton;
@@ -21,14 +27,18 @@ public class Record : MonoBehaviour, IRunnable
     public void Run()
     {
         Event.Raise();
-
         if (!Event.isRecording())
         {
+            VideoCaptureCtrl.instance.StopCapture();
             gameObject.GetComponent<Renderer>().material = recordButton;
             Debug.Log("Save & Export");
         }
         else
         {
+            VideoCaptureCtrl.instance.StartCapture();
+            // VideoPlayer.instance.SetRootFolder();
+            // VideoPlayer.instance.NextVideo();
+            // VideoPlayer.instance.PlayVideo();
             gameObject.GetComponent<Renderer>().material = stopButton;
             Debug.Log("Start Recording");
         }
