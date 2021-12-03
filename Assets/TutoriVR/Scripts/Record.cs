@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using RockVR.Video;
 
 
-[RequireComponent(typeof(Camera))]
+// [RequireComponent(typeof(Camera))]
 public class Record : MonoBehaviour, IRunnable
 {
     [SerializeField] Material recordButton;
@@ -16,36 +16,36 @@ public class Record : MonoBehaviour, IRunnable
 
     private IAppInfo appInfo;
 
-    [SerializeField] VideoCapture VC;
+    // [SerializeField] VideoCapture VC;
     // Start is called before the first frame update
     void Start()
     {
         appInfo = GetComponentInParent<IAppInfo>();
         transform.parent = appInfo.GetLeftController();
-        transform.localPosition = appInfo.GetRecordButtonPosition();
-        transform.localEulerAngles = appInfo.GetRecordButtonEulerAngles();
+        // transform.localPosition = appInfo.GetRecordButtonPosition();
+        // transform.localEulerAngles = appInfo.GetRecordButtonEulerAngles();
     }
 
     public void Run()
     {
-        Event.Raise();
-        if (!Event.isRecording())
-        {
-            VideoCaptureCtrl.instance.StopCapture();
-            gameObject.GetComponent<Renderer>().material = recordButton;
-            Debug.Log("Save & Export");
-        }
-        else
-        {
-            RecordingEventListener.recordID = Time.time.ToString();
-            PathConfig.SaveFolder = RecordingEventListener.ExportPath();
-            VC.customPathFolder = RecordingEventListener.ExportPath();
-            VideoCaptureCtrl.instance.StartCapture();
-            // VideoPlayer.instance.SetRootFolder();
-            // VideoPlayer.instance.NextVideo();
-            // VideoPlayer.instance.PlayVideo();
-            gameObject.GetComponent<Renderer>().material = stopButton;
-            Debug.Log("Start Recording");
-        }
+        // Event.Raise();
+        // if (!Event.isRecording())
+        // {
+        //     VideoCaptureCtrl.instance.StopCapture();
+        //     gameObject.GetComponent<Renderer>().material = recordButton;
+        //     Debug.Log("Save & Export");
+        // }
+        // else
+        // {
+        //     RecordingEventListener.recordID = Time.time.ToString();
+        //     PathConfig.SaveFolder = RecordingEventListener.ExportPath();
+        //     VC.customPathFolder = RecordingEventListener.ExportPath();
+        //     VideoCaptureCtrl.instance.StartCapture();
+        //     // VideoPlayer.instance.SetRootFolder();
+        //     // VideoPlayer.instance.NextVideo();
+        //     // VideoPlayer.instance.PlayVideo();
+        //     gameObject.GetComponent<Renderer>().material = stopButton;
+        //     Debug.Log("Start Recording");
+        // }
     }
 }
