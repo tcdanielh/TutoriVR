@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -8,11 +8,11 @@ using RockVR.Video;
 
 
 // [RequireComponent(typeof(Camera))]
-public class Record : MonoBehaviour, IRunnable
+public class VideoPlayerButton : MonoBehaviour, IRunnable
 {
-    [SerializeField] Material recordButton;
-    [SerializeField] Material stopButton;
-    [SerializeField] RecordingEvent Event;
+    [SerializeField] Material showButton;
+    [SerializeField] Material closeButton;
+    // [SerializeField] RecordingEvent Event;
 
     private IAppInfo appInfo;
     private bool currentstate;
@@ -21,13 +21,9 @@ public class Record : MonoBehaviour, IRunnable
     // Start is called before the first frame update
     void Start()
     {
-        appInfo = GetComponentInParent<IAppInfo>();
-        transform.parent = appInfo.GetLeftController();
-        transform.localPosition = appInfo.GetRecordButtonPosition();
-        transform.localEulerAngles = appInfo.GetRecordButtonEulerAngles();
         SetChildrenActive(false);
         currentstate = false;
-         gameObject.GetComponent<Renderer>().material = recordButton;   
+         gameObject.GetComponent<Renderer>().material = showButton;   
     }
     
     private void SetChildrenActive(bool setting)
@@ -45,10 +41,10 @@ public class Record : MonoBehaviour, IRunnable
         if (currentstate==false)
         {
          
-        gameObject.GetComponent<Renderer>().material = recordButton;   
+        gameObject.GetComponent<Renderer>().material = showButton;   
         }
         else
-        {gameObject.GetComponent<Renderer>().material = stopButton;   
+        {gameObject.GetComponent<Renderer>().material = closeButton;   
 
         }
         // Event.Raise();

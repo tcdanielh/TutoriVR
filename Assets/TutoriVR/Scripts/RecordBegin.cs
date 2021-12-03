@@ -22,8 +22,8 @@ public class RecordBegin : MonoBehaviour, IRunnable
     {
         // appInfo = GetComponentInParent<IAppInfo>();
         // transform.parent = appInfo.GetLeftController();
-        transform.localPosition = appInfo.GetRecordButtonPosition();
-        transform.localEulerAngles = appInfo.GetRecordButtonEulerAngles();
+        // transform.localPosition = appInfo.GetRecordButtonPosition();
+        // transform.localEulerAngles = appInfo.GetRecordButtonEulerAngles();
     }
 
     public void Run()
