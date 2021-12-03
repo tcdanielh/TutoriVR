@@ -16,6 +16,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
 
     private IAppInfo appInfo;
     private bool currentstate;
+    public GameObject VideoPlayer;
 
     // [SerializeField] VideoCapture VC;
     // Start is called before the first frame update
@@ -28,10 +29,12 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     
     private void SetChildrenActive(bool setting)
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(setting);
-        }
+        VideoPlayer.SetActive(setting);
+
+        // for (int i = 0; i < transform.childCount; i++)
+        // {
+        //     transform.GetChild(i).gameObject.SetActive(setting);
+        // }
     }
 
     public void Run()
@@ -45,6 +48,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
         }
         else
         {gameObject.GetComponent<Renderer>().material = closeButton;   
+        // transform.GetChild(0).gameObject.transform.position =new Vector3(1,0,-80);
 
         }
         // Event.Raise();
