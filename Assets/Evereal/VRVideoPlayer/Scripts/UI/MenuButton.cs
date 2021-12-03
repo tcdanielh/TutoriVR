@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Evereal.VRVideoPlayer
 {
-  public class MenuButton : ButtonBase
+  public class MenuButton : ButtonBase, IRunnable
   {
     public GameObject menuPanel;
     public GameObject menuIcon;
@@ -20,6 +20,13 @@ namespace Evereal.VRVideoPlayer
       isMenuPanelOpen = !isMenuPanelOpen;
       Toggle();
     }
+
+    public void Run(Vector3 currentPoint)
+    {
+            menuPanel.SetActive(!isMenuPanelOpen);
+            isMenuPanelOpen = !isMenuPanelOpen;
+            Toggle();
+        }
 
     public void Toggle()
     {

@@ -26,7 +26,7 @@ public class RecordBegin : MonoBehaviour, IRunnable
         // transform.localEulerAngles = appInfo.GetRecordButtonEulerAngles();
     }
 
-    public void Run()
+    public void Run(Vector3 currentpoint)
     {
         Event.Raise();
         if (!Event.isRecording())

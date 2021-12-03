@@ -37,7 +37,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
         // }
     }
 
-    public void Run()
+    public void Run(Vector3 currentpoint)
     {
         SetChildrenActive(!currentstate);
         currentstate = !currentstate;

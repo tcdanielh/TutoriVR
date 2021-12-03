@@ -38,7 +38,7 @@ public class Record : MonoBehaviour, IRunnable
         }
     }
 
-    public void Run()
+    public void Run(Vector3 currentpoint)
     {
         SetChildrenActive(!currentstate);
         currentstate = !currentstate;

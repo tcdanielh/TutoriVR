@@ -13,7 +13,7 @@ public class SendRecordAlert : MonoBehaviour, IRunnable
 {
     [SerializeField] AlertLedger recorder;
     [SerializeField] ColoredAlert alertColor;
-    public void Run()
+    public void Run(Vector3 currentpoint)
     {
         recorder.RecordNewAlert(alertColor);
     }

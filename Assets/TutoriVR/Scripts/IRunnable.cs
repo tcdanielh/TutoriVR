@@ -1,4 +1,6 @@
-﻿public interface IRunnable
+﻿using UnityEngine;
+public interface IRunnable
 {
-    void Run();
+    void Run(Vector3 currentpoint);
+    // void Run(Vector3 currentpoint);
 }

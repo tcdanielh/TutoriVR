@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Evereal.VRVideoPlayer
 {
-  public class StereoModeButton : ButtonBase
+  public class StereoModeButton : ButtonBase, IRunnable
   {
     public StereoMode stereoMode = StereoMode.NONE;
 
@@ -24,5 +24,10 @@ namespace Evereal.VRVideoPlayer
     {
       videoPlayerCtrl.SetVideoStereoMode(stereoMode);
     }
+
+        public void Run(Vector3 currentPoint)
+        {
+            videoPlayerCtrl.SetVideoStereoMode(stereoMode);
+        }
   }
 }

@@ -79,7 +79,7 @@ public class TutoriRaycastManager : MonoBehaviour
                 } 
                 else if (status == ButtonStatus.Up)
                 {
-                    obj.GetComponent<IRunnable>().Run();
+                    obj.GetComponent<IRunnable>().Run(hit.point);
                 }
                 return obj;
             }
