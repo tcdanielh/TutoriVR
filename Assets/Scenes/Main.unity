@@ -3635,7 +3635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165291216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 14, z: 8}
+  m_LocalPosition: {x: 0, y: 14.04, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1796800572}
@@ -32668,6 +32668,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showButton: {fileID: 2100000, guid: 4552f4e7fece8cd43bbd33f4927055a8, type: 2}
   closeButton: {fileID: 2100000, guid: cbcfc8a208697b5498b6d43c8963de86, type: 2}
+  playFromFile: 1
+  buttonRecreation: {fileID: 3517358738834603796, guid: afbdf170bca0d1748b9222f57bfedd6e,
+    type: 3}
   VideoPlayer: {fileID: 1146105599}
 --- !u!1001 &2094189263
 PrefabInstance:

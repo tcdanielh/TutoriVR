@@ -12,6 +12,8 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
 {
     [SerializeField] Material showButton;
     [SerializeField] Material closeButton;
+    [SerializeField] bool playFromFile;
+    [SerializeField] GameObject buttonRecreation;
     // [SerializeField] RecordingEvent Event;
 
     private IAppInfo appInfo;
@@ -39,36 +41,38 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
 
     public void Run(Vector3 currentpoint)
     {
-        SetChildrenActive(!currentstate);
+        if (!playFromFile)
+        {
+            SetChildrenActive(!currentstate);
+        } 
+        else
+        {
+            string d = Application.persistentDataPath + "/recording";
+            Debug.Log(d);
+            var info = new DirectoryInfo(d);
+            var fileInfo = info.GetDirectories();
+            var f = fileInfo[0];
+            var fileList = f.GetFiles();
+            foreach (FileInfo fi in fileList)
+            {
+                Debug.Log(fi.Name);
+            }
+            StreamReader reader = new StreamReader(f.FullName + "/inputs.json");
+            string inputsJson = reader.ReadToEnd();
+            reader.Close();
+            buttonLedger inputsData = JsonUtility.FromJson<buttonLedger>(inputsJson);
+            GameObject br = GameObject.Instantiate(buttonRecreation);
+            br.GetComponent<trackController>().dataLedger = inputsData;
+            br.GetComponent<trackController>().Play();
+        }
+        
         currentstate = !currentstate;
         if (currentstate==false)
         {
-         
         gameObject.GetComponent<Renderer>().material = showButton;   
         }
         else
         {gameObject.GetComponent<Renderer>().material = closeButton;   
-        // transform.GetChild(0).gameObject.transform.position =new Vector3(1,0,-80);
-
         }
-        // Event.Raise();
-        // if (!Event.isRecording())
-        // {
-        //     VideoCaptureCtrl.instance.StopCapture();
-        //     gameObject.GetComponent<Renderer>().material = recordButton;
-        //     Debug.Log("Save & Export");
-        // }
-        // else
-        // {
-        //     RecordingEventListener.recordID = Time.time.ToString();
-        //     PathConfig.SaveFolder = RecordingEventListener.ExportPath();
-        //     VC.customPathFolder = RecordingEventListener.ExportPath();
-        //     VideoCaptureCtrl.instance.StartCapture();
-        //     // VideoPlayer.instance.SetRootFolder();
-        //     // VideoPlayer.instance.NextVideo();
-        //     // VideoPlayer.instance.PlayVideo();
-        //     gameObject.GetComponent<Renderer>().material = stopButton;
-        //     Debug.Log("Start Recording");
-        // }
     }
 }
