@@ -41,6 +41,7 @@ public abstract class RecordingEventListener : MonoBehaviour
 
     public void OnRecordRaised()
     {
+        Debug.Log("RRecord Raised");
         if (Event.isRecording())
         {
             StartRecording();

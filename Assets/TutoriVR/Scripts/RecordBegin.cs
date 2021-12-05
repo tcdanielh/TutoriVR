@@ -28,6 +28,7 @@ public class RecordBegin : MonoBehaviour, IRunnable
 
     public void Run(Vector3 currentpoint)
     {
+        Debug.Log("Clicked");
         Event.Raise();
         if (!Event.isRecording())
         {
