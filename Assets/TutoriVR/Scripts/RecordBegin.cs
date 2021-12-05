@@ -16,7 +16,7 @@ public class RecordBegin : MonoBehaviour, IRunnable
 
     private IAppInfo appInfo;
 
-    [SerializeField] VideoCapture VC;
+    VideoCapture[] VC;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,12 @@ public class RecordBegin : MonoBehaviour, IRunnable
         // transform.parent = appInfo.GetLeftController();
         // transform.localPosition = appInfo.GetRecordButtonPosition();
         // transform.localEulerAngles = appInfo.GetRecordButtonEulerAngles();
+        GameObject[] cams = GameObject.FindGameObjectsWithTag("RecordCam");
+        VC = new VideoCapture[cams.Length];
+        for (int i = 0; i < cams.Length; i++)
+        {
+            VC[i] = cams[i].GetComponent<VideoCapture>();
+        }
     }
 
     public void Run(Vector3 currentpoint)
@@ -40,8 +46,12 @@ public class RecordBegin : MonoBehaviour, IRunnable
         {
             RecordingEventListener.recordID = Time.time.ToString();
             PathConfig.SaveFolder = RecordingEventListener.ExportPath();
-            VC.customPathFolder = RecordingEventListener.ExportPath();
+            foreach (VideoCapture vc in VC) vc.customPathFolder = RecordingEventListener.ExportPath();
             VideoCaptureCtrl.instance.StartCapture();
+            foreach (GameObject o in GameObject.FindGameObjectsWithTag("RecordCam"))
+            {
+                o.GetComponent<FollowHMD>().enabled = true;
+            }
             // VideoPlayer.instance.SetRootFolder();
             // VideoPlayer.instance.NextVideo();
             // VideoPlayer.instance.PlayVideo();
