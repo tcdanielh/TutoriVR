@@ -16,10 +16,11 @@ namespace Evereal.VRVideoPlayer
     {
       videoPlayerCtrl.ToggleAudioMute();
     }
-        public void Run(Vector3 currentPoint)
-        {
+    public void Run(Vector3 currentPoint)
+    {
+            Debug.Log("in run");
             videoPlayerCtrl.ToggleAudioMute();
-        }
+    }
 
     public void Toggle()
     {

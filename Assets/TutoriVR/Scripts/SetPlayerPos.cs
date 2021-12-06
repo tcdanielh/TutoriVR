@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 
 // [RequireComponent(typeof(Camera))]
-public class SetPlayerPos : MonoBehaviour,IRunnable
+public class SetPlayerPos : MonoBehaviour, IRunnableHold
 {
-    [SerializeField] Material recordButton;
-    [SerializeField] Material stopButton;
+
     // [SerializeField] RecordingEvent Event;
-    public Text txt;
+    // public Text txt;
     private IAppInfo appInfo;
+    private bool held;
 
     // private IAppInfo appInfo;
 
@@ -20,41 +20,72 @@ public class SetPlayerPos : MonoBehaviour,IRunnable
     void Start()
     {
         appInfo = GetComponentInParent<IAppInfo>();
-        gameObject.GetComponent<Renderer>().material = stopButton;   
+ 
+        held = false;
         // transform.position = new Vector3 (1,0,-80);
     }
 
-
-    IEnumerator EnableEffect()
-        {
-            // Debug.Log("EnableEffect 1");
-            //  txt.text="4s";
-            yield return new WaitForSeconds(1f);
-            txt.text="3s";
-            yield return new WaitForSeconds(1f);
-            txt.text="2s";
-            yield return new WaitForSeconds(1f);
-            txt.text="1s";
-            yield return new WaitForSeconds(1f);
-            txt.text="0s";
-            transform.parent.parent =GameObject.Find("TutoriWidgets").transform;
-            gameObject.GetComponent<Renderer>().material = stopButton;   
-            // Debug.Log("EnableEffect 2");
-           //RealMethod();
-        }
-    public void Run(Vector3 currentpoint)
+    void Update()
     {
-        // appInfo = GetComponentInParent<IAppInfo>();
-        // if (rController == null) rController = appInfo.GetRightController();
-        // if (lController == null) lController = appInfo.GetLeftController();
-        gameObject.GetComponent<Renderer>().material = recordButton;   
-        txt.text="4s";
-        transform.parent.parent = appInfo.GetRightController();
-        transform.parent.localPosition = new Vector3(0,2,0);
-        transform.parent.localEulerAngles = new Vector3(0,3,0);
-       StartCoroutine( EnableEffect());
-       txt.text="Move";
-        // yield return new WaitForSeconds(5);
-        
+        Debug.Log(appInfo.GetUnusedButtonStatus());
+    }
+
+
+    ///*IEnumerator EnableEffect()*/
+    //    {
+    //        // Debug.Log("EnableEffect 1");
+    //        //  txt.text="4s";
+    //        transform.parent.parent =GameObject.Find("TutoriWidgets").transform;
+    //        gameObject.GetComponent<Renderer>().material = stopButton;   
+    //        // Debug.Log("EnableEffect 2");
+    //       //RealMethod();
+    //    }
+
+
+    IEnumerator Held()
+    {
+        Debug.Log("held 1");
+        while (appInfo.GetUnusedButtonStatus() == ButtonStatus.Held)
+        {
+            Debug.Log("held2");
+            transform.parent.parent = appInfo.GetRightController();
+            yield return null;
+            transform.parent.parent = GameObject.Find("TutoriWidgets").transform;
+        }
+    }
+
+    IEnumerator UnHeld()
+    {
+        while (appInfo.GetUnusedButtonStatus() != ButtonStatus.Held)
+        {
+            transform.parent.parent = GameObject.Find("TutoriWidgets").transform;
+            yield return null;
+        }
+    }
+
+    //public void Run(Vector3 currentpoint)
+    //{
+    //    held = !held;
+    //    // appInfo = GetComponentInParent<IAppInfo>();
+    //    // if (rController == null) rController = appInfo.GetRightController();
+    //    // if (lController == null) lController = appInfo.GetLeftController();
+    //    if (held)
+    //    {
+    //        transform.parent.parent = appInfo.GetRightController();
+    //    } else
+    //    {
+    //        transform.parent.parent = GameObject.Find("TutoriWidgets").transform;
+    //    }
+
+    //    // yield return new WaitForSeconds(5);
+
+    //}
+
+    public void RunHold(Vector3 currentpoint)
+    {
+
+            Debug.Log("rstat held");
+            StartCoroutine(Held());
+
     }
 }

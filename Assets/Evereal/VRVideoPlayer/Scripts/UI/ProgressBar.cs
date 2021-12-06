@@ -19,7 +19,9 @@ namespace Evereal.VRVideoPlayer
             //             Debug.Log(startPoint.position);
             //  Debug.Log(currentPoint);
             // Debug.Log(currentWidth);
+            Debug.Log(progress);
             videoPlayerCtrl.videoTime = videoPlayerCtrl.videoLength * progress;
+            SetProgress(progress);
         }
   }
 }
