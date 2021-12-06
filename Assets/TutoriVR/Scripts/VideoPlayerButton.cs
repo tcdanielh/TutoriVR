@@ -60,6 +60,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
             StreamReader reader = new StreamReader(f.FullName + "/inputs.json");
             string inputsJson = reader.ReadToEnd();
             reader.Close();
+
             buttonLedger inputsData = JsonUtility.FromJson<buttonLedger>(inputsJson);
             GameObject br = GameObject.Instantiate(buttonRecreation);
             br.GetComponent<trackController>().dataLedger = inputsData;

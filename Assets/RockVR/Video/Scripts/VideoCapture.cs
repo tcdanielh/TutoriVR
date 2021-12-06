@@ -232,10 +232,10 @@ namespace RockVR.Video
             }
             if (mode == ModeType.LOCAL)
             {
-                string LR = "RIGHT-";
-                if (gameObject.GetComponent<FollowHMD>().xOffset < 0) LR = "LEFT-";
-                if (Mathf.Abs(gameObject.GetComponent<FollowHMD>().xOffset) < 0.01) LR = "MONO-";
-                filePath = PathConfig.SaveFolder + LR + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+                string LR = "RIGHT";
+                if (gameObject.GetComponent<FollowHMD>().xOffset < 0) LR = "LEFT";
+                if (Mathf.Abs(gameObject.GetComponent<FollowHMD>().xOffset) < 0.01) LR = "MONO";
+                filePath = PathConfig.SaveFolder + LR + ".mp4";
                 Debug.Log("File Path is: " + filePath);
             }
             // Create a RenderTexture with desired frame size for dedicated
