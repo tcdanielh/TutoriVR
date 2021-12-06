@@ -36,6 +36,8 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
         rightTriggerStatus = UpdatedButtonStatus(rightTriggerStatus, rtVal);
         leftTriggerStatus = UpdatedButtonStatus(leftTriggerStatus, ltVal);
         unusedButtonStatus = UpdatedButtonStatus(unusedButtonStatus, uval);
+        //Debug.Log(uval);
+        //Debug.Log(unusedButtonStatus);
     }
 
     private ButtonStatus UpdatedButtonStatus(ButtonStatus current, bool isPressed)

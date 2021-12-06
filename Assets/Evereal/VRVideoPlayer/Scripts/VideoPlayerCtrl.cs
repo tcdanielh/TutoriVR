@@ -226,6 +226,10 @@ namespace Evereal.VRVideoPlayer
 
     public void ToggleAudioMute()
     {
+            Debug.Log(isAudioMute);
+            Debug.Log(GetComponent<UnityEngine.Video.VideoPlayer>());
+            //GetComponent<UnityEngine.Video.VideoPlayer>().SetDirectAudioMute(0, !isAudioMute);
+            Debug.Log("here");
       vrVideoPlayer.SetAudioMute(0, !isAudioMute);
       volumeButton.Toggle();
     }

@@ -162,6 +162,7 @@ namespace Evereal.VRVideoPlayer
     {
       // Init audio source
       audioSource = gameObject.AddComponent<AudioSource>();
+            Debug.Log("init");
       audioSource.playOnAwake = false;
 
       // Init video player
@@ -174,7 +175,7 @@ namespace Evereal.VRVideoPlayer
       // as setting the source mode will reset those
       videoPlayer.source = UnityEngine.Video.VideoSource.Url;
       // Set audio output mode to AudioSource
-      videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+      videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
       videoPlayer.controlledAudioTrackCount = 1;
       // TODO, add set audio track function
       videoPlayer.EnableAudioTrack(0, true);

@@ -250,6 +250,7 @@ namespace Evereal.VRVideoPlayer
     // Set the audio mute status for the specified track.
     public void SetAudioMute(ushort track, bool mute)
     {
+            Debug.Log(track);
       mediaPlayer.SetAudioMute(track, mute);
     }
 
