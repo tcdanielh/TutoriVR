@@ -62,7 +62,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
             reader.Close();
 
             buttonLedger inputsData = JsonUtility.FromJson<buttonLedger>(inputsJson);
-            GameObject br = GameObject.Instantiate(buttonRecreation);
+            GameObject br = Instantiate(buttonRecreation,Vector3.zero,Quaternion.identity,null);
             br.GetComponent<trackController>().dataLedger = inputsData;
             br.GetComponent<trackController>().Play();
         }
