@@ -9215,7 +9215,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599076468}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5116c2e1fe0baa7419aa4d96c8500339, type: 3}
   m_Name: 
@@ -15938,6 +15938,22 @@ PrefabInstance:
       propertyPath: playlist.Array.data[0]
       value: VRSampleVideo/Painting_Tree_in_TiltBrush.mp4
       objectReference: {fileID: 0}
+    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
+        type: 3}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 1146105603}
+    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
+        type: 3}
+      propertyPath: EndPoint
+      value: 
+      objectReference: {fileID: 1146105602}
+    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
+        type: 3}
+      propertyPath: alertMarkerPrefab
+      value: 
+      objectReference: {fileID: 957070707806924748, guid: 69464d9ba28b7304d979e15926ac2084,
+        type: 3}
     - target: {fileID: 4766752309325510, guid: e140936c619624db4b6740ea5d94c1ff, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -16090,22 +16106,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
-        type: 3}
-      propertyPath: startPoint
-      value: 
-      objectReference: {fileID: 1146105603}
-    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
-        type: 3}
-      propertyPath: EndPoint
-      value: 
-      objectReference: {fileID: 1146105602}
-    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
-        type: 3}
-      propertyPath: alertMarkerPrefab
-      value: 
-      objectReference: {fileID: 957070707806924748, guid: 69464d9ba28b7304d979e15926ac2084,
-        type: 3}
     - target: {fileID: 114301495870834444, guid: e140936c619624db4b6740ea5d94c1ff,
         type: 3}
       propertyPath: stereo_quad
@@ -21618,7 +21618,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395606868205072}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5116c2e1fe0baa7419aa4d96c8500339, type: 3}
   m_Name: 
