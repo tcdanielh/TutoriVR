@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Threading;
 using System.Runtime.InteropServices;
-using RockVR.Video;
+using Evereal.VideoCapture;
 
 
 [RequireComponent(typeof(Camera))]
@@ -38,20 +38,37 @@ public class RecordBegin : MonoBehaviour, IRunnable
         Event.Raise();
         if (!Event.isRecording())
         {
-            VideoCaptureCtrl.instance.StopCapture();
+            foreach (GameObject o in GameObject.FindGameObjectsWithTag("RecordCam"))
+            {
+                o.GetComponent<VideoCapture>().StopCapture();
+            }
             gameObject.GetComponent<Renderer>().material = recordButton;
             Debug.Log("Save & Export");
         }
         else
         {
             RecordingEventListener.recordID = Time.time.ToString();
-            PathConfig.SaveFolder = RecordingEventListener.ExportPath();
-            foreach (VideoCapture vc in VC) vc.customPathFolder = RecordingEventListener.ExportPath();
-            VideoCaptureCtrl.instance.StartCapture();
+            foreach (VideoCapture vc in VC)
+            {
+                vc.saveFolder = RecordingEventListener.ExportPath();
+                
+            }
+
+            //foreach (VideoCapture vc in VC) vc.customPathFolder = RecordingEventListener.ExportPath();
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("RecordCam"))
             {
+                if (o.GetComponent<VideoCapture>().captureSource == CaptureSource.CAMERA)
+                {
+                    o.GetComponent<VideoCapture>().SetCustomFileName("MONO");
+                } else if (o.GetComponent<VideoCapture>().captureSource == CaptureSource.SCREEN) {
+                    o.GetComponent<VideoCapture>().SetCustomFileName("STEREO");
+                }
+                Debug.Log("in here");
+                o.GetComponent<VideoCapture>().StartCapture();
                 o.GetComponent<FollowHMD>().enabled = true;
             }
+
+
             // VideoPlayer.instance.SetRootFolder();
             // VideoPlayer.instance.NextVideo();
             // VideoPlayer.instance.PlayVideo();

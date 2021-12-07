@@ -3,7 +3,7 @@
 using System;
 using UnityEngine;
 
-namespace Evereal.VRVideoPlayer
+namespace Evereal.VideoCapture
 {
   public class Readme : ScriptableObject
   {

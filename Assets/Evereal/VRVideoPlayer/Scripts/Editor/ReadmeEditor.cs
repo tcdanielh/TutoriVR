@@ -5,7 +5,7 @@ using UnityEditor;
 using System.IO;
 using System.Reflection;
 
-namespace Evereal.VRVideoPlayer
+namespace Evereal.VideoCapture
 {
   [CustomEditor(typeof(Readme))]
   [InitializeOnLoad]
@@ -18,7 +18,7 @@ namespace Evereal.VRVideoPlayer
 
     static ReadmeEditor()
     {
-      EditorApplication.delayCall += SelectReadmeAutomatically;
+      //EditorApplication.delayCall += SelectReadmeAutomatically;
     }
 
     static void SelectReadmeAutomatically()
@@ -44,7 +44,7 @@ namespace Evereal.VRVideoPlayer
       method.Invoke(null, new object[] { Path.Combine(Application.dataPath, "»Readme/Layout.wlt"), false });
     }
 
-    [MenuItem("Tools/Evereal/VRVideoPlayer/Readme")]
+    [MenuItem("Tools/Evereal/VideoCapture/Readme")]
     static Readme SelectReadme()
     {
       var ids = AssetDatabase.FindAssets("Readme t:Readme");
@@ -119,6 +119,7 @@ namespace Evereal.VRVideoPlayer
       }
     }
 
+
     bool m_Initialized;
 
     GUIStyle LinkStyle { get { return m_LinkStyle; } }
@@ -155,6 +156,7 @@ namespace Evereal.VRVideoPlayer
 
       m_Initialized = true;
     }
+
     bool LinkLabel(GUIContent label, params GUILayoutOption[] options)
     {
       var position = GUILayoutUtility.GetRect(label, LinkStyle, options);
