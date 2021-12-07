@@ -16080,6 +16080,22 @@ PrefabInstance:
       propertyPath: playlist.Array.data[0]
       value: VRSampleVideo/Painting_Tree_in_TiltBrush.mp4
       objectReference: {fileID: 0}
+    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
+        type: 3}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 1146105603}
+    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
+        type: 3}
+      propertyPath: EndPoint
+      value: 
+      objectReference: {fileID: 1146105602}
+    - target: {fileID: 114264214864148510, guid: e140936c619624db4b6740ea5d94c1ff,
+        type: 3}
+      propertyPath: alertMarkerPrefab
+      value: 
+      objectReference: {fileID: 957070707806924748, guid: 69464d9ba28b7304d979e15926ac2084,
+        type: 3}
     - target: {fileID: 114301495870834444, guid: e140936c619624db4b6740ea5d94c1ff,
         type: 3}
       propertyPath: stereo_quad
@@ -16163,6 +16179,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e964a030fd7774da4b706baa7f5b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1146105602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4621389734895782, guid: e140936c619624db4b6740ea5d94c1ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1146105598}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1146105603 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4949828105144296, guid: e140936c619624db4b6740ea5d94c1ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1146105598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1146105605
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,21 +3,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Evereal.VRVideoPlayer
 {
   [RequireComponent(typeof(VRVideoPlayer))]
   public class VideoPlayerCtrl : MonoBehaviour
   {
+
+        
     #region Properties
 
     // Video playlist
+    public GameObject alertMarkerPrefab;
+    private ListLedger alertsData;
     public List<string> playlist = new List<string>();
     public VideoTitle videoTitle;
     public PlayButton playButton;
     public VideoTime currentTime;
     public VideoTime totalTime;
     public ProgressBar progressBar;
+    public Transform startPoint;
+    public Transform EndPoint;
     public VolumeButton volumeButton;
     public VolumeBar volumeBar;
     public RenderModeButton normalButton;
@@ -82,6 +89,25 @@ namespace Evereal.VRVideoPlayer
     private const string LOG_FORMAT = "[VideoPlayerCtrl] {0}";
 
     #endregion
+
+
+        public void loadAlerts(ListLedger a)
+        {
+            alertsData = a;
+            float len = Mathf.Abs(startPoint.localPosition.x - EndPoint.localPosition.x);
+            float totalTime = alertsData.totalTime;
+            foreach(Alert alert in alertsData.alertList)
+            {
+                GameObject o = Instantiate(alertMarkerPrefab, progressBar.gameObject.transform);
+                Color c;
+                if (alert.color == ColoredAlert.Red) { c = Color.red; }
+                else if (alert.color == ColoredAlert.Blue) { c = Color.blue; }
+                else c = Color.yellow;
+                o.GetComponent<Image>().color = c;
+                float percent = alert.time / totalTime;
+                o.transform.localPosition = new Vector3(startPoint.transform.localPosition.x + (percent * len), o.transform.localPosition.x, o.transform.localPosition.z);
+            }
+        }
 
     #region Events
 
@@ -223,6 +249,42 @@ namespace Evereal.VRVideoPlayer
     {
       videoTime -= step;
     }
+
+    public void SkipToAlert(bool forwards)
+        {
+            List<Alert> all = new List<Alert>();
+            all.Add(new Alert(0, ColoredAlert.Red));
+            all.AddRange(alertsData.alertList);
+            all.Add(new Alert(alertsData.totalTime, ColoredAlert.Red));
+            int mid = 0;
+            while (all[mid].time < videoTime) mid++;
+            mid--;
+            //int minAlert = 0;
+            //int maxAlert = all.Count-1;
+            //int mid = (minAlert + maxAlert) / 2;
+            //Debug.Log("Video time is " + videoTime);
+            //while(minAlert < maxAlert)
+            //{
+            //    if (!(all[mid].time < videoTime && all[mid + 1].time > videoTime) || Mathf.Abs((float)videoTime - all[mid].time) < 0.1f) break;
+            //    if (all[mid].time < videoTime)
+            //    {
+            //        maxAlert = mid;
+            //    }
+            //    else
+            //    {
+            //        minAlert = mid;
+            //    }
+            //    mid = (minAlert + maxAlert) / 2;
+            //}
+            if (forwards)
+            {
+                videoTime = all[mid + 1].time;
+            } else
+            {
+                videoTime = all[mid].time;
+            }
+            //if (videoTime > 0.1f) videoTime -= 0.1f;
+        }
 
     public void ToggleAudioMute()
     {

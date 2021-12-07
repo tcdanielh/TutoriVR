@@ -19,6 +19,7 @@ public class Alert
 public class ListLedger
 {
     public List<Alert> alertList;
+    public float totalTime;
     public ListLedger()
     {
         alertList = new List<Alert>();
@@ -53,6 +54,7 @@ public class AlertLedger : ScriptableObject
         {
             Debug.Log(recordedAlerts.alertList[i]);
         }
+        recordedAlerts.totalTime = Time.time - recordingStartTime;
         return JsonUtility.ToJson(recordedAlerts);
     }
 }

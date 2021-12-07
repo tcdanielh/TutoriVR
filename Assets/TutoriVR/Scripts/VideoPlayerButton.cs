@@ -79,7 +79,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
                 readerAlerts.Close();
 
                 ListLedger alertsData = JsonUtility.FromJson<ListLedger>(alertsJson);
-
+                VideoPlayer.GetComponent<VideoPlayerCtrl>().loadAlerts(alertsData);
 
                 StreamReader readerInputs = new StreamReader(f.FullName + "/inputs.json");
                 string inputsJson = readerInputs.ReadToEnd();
