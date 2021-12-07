@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Threading;
 using System.Runtime.InteropServices;
-using RockVR.Video;
+using Evereal.VRVideoPlayer;
 
 
 // [RequireComponent(typeof(Camera))]
@@ -13,12 +13,14 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     [SerializeField] Material showButton;
     [SerializeField] Material closeButton;
     [SerializeField] bool playFromFile;
+    public bool readTutori;
     [SerializeField] GameObject buttonRecreation;
     // [SerializeField] RecordingEvent Event;
 
     private IAppInfo appInfo;
     private bool currentstate;
     public GameObject VideoPlayer;
+    public GameObject VideoPlayer_stereo;
 
     // [SerializeField] VideoCapture VC;
     // Start is called before the first frame update
@@ -32,7 +34,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     private void SetChildrenActive(bool setting)
     {
         VideoPlayer.SetActive(setting);
-
+        VideoPlayer_stereo.SetActive(setting);
         // for (int i = 0; i < transform.childCount; i++)
         // {
         //     transform.GetChild(i).gameObject.SetActive(setting);
@@ -46,7 +48,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
             SetChildrenActive(!currentstate);
         } 
         else
-        {
+        { 
             string d = Application.persistentDataPath + "/recording";
             Debug.Log(d);
             var info = new DirectoryInfo(d);
@@ -57,14 +59,30 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
             {
                 Debug.Log(fi.Name);
             }
-            StreamReader reader = new StreamReader(f.FullName + "/inputs.json");
-            string inputsJson = reader.ReadToEnd();
-            reader.Close();
+            if (readTutori)
+            {
+                VideoPlayer.GetComponent<VRVideoPlayer>().SetSource(VideoSource.ABSOLUTE_URL);
+                VideoPlayer.GetComponent<VideoPlayerCtrl>().playlist[0] = f.FullName + "/MONO.mp4";
 
-            buttonLedger inputsData = JsonUtility.FromJson<buttonLedger>(inputsJson);
-            GameObject br = Instantiate(buttonRecreation,Vector3.zero,Quaternion.identity,null);
-            br.GetComponent<trackController>().dataLedger = inputsData;
-            br.GetComponent<trackController>().Play();
+                VideoPlayer_stereo.GetComponent<VRVideoPlayer>().SetSource(VideoSource.ABSOLUTE_URL);
+                VideoPlayer_stereo.GetComponent<VideoPlayerCtrl>().playlist[0] = f.FullName + "/STEREO.mp4";
+
+                StreamReader reader = new StreamReader(f.FullName + "/inputs.json");
+                string inputsJson = reader.ReadToEnd();
+                reader.Close();
+
+                buttonLedger inputsData = JsonUtility.FromJson<buttonLedger>(inputsJson);
+                GameObject br = Instantiate(buttonRecreation, Vector3.zero, Quaternion.identity, null);
+                br.GetComponent<trackController>().dataLedger = inputsData;
+                br.GetComponent<trackController>().Play();
+
+                SetChildrenActive(!currentstate);
+            } else //read from file, only 1 video
+            {
+                VideoPlayer.GetComponent<VRVideoPlayer>().SetSource(VideoSource.ABSOLUTE_URL);
+                VideoPlayer.GetComponent<VideoPlayerCtrl>().playlist[0] = f.FullName + "/" + fileList[0].Name;
+                SetChildrenActive(!currentstate);
+            }
         }
         
         currentstate = !currentstate;

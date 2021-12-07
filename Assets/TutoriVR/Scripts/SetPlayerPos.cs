@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Evereal.VRVideoPlayer;
 
 
 // [RequireComponent(typeof(Camera))]
@@ -12,6 +13,7 @@ public class SetPlayerPos : MonoBehaviour, IRunnableHold
     // public Text txt;
     private IAppInfo appInfo;
     private bool held;
+    //public GameObject videoPlayer;
 
     // private IAppInfo appInfo;
 
@@ -27,7 +29,7 @@ public class SetPlayerPos : MonoBehaviour, IRunnableHold
 
     void Update()
     {
-        Debug.Log(appInfo.GetUnusedButtonStatus());
+        //Debug.Log(appInfo.GetUnusedButtonStatus());
     }
 
 
@@ -47,10 +49,17 @@ public class SetPlayerPos : MonoBehaviour, IRunnableHold
         Debug.Log("held 1");
         while (appInfo.GetUnusedButtonStatus() == ButtonStatus.Held)
         {
-            Debug.Log("held2");
-            transform.parent.parent = appInfo.GetRightController();
-            yield return null;
-            transform.parent.parent = GameObject.Find("TutoriWidgets").transform;
+            if (transform.parent.GetComponent<VRVideoPlayer>().stereoMode == StereoMode.NONE)
+            {
+                transform.parent.parent = appInfo.GetRightController();
+                yield return null;
+                transform.parent.parent = GameObject.Find("VRVideoPlayer_UI (1)").transform;
+            } else if (transform.parent.GetComponent<VRVideoPlayer>().stereoMode == StereoMode.LEFT_RIGHT)
+            {
+                transform.parent.parent = appInfo.GetRightController();
+                yield return null;
+                transform.parent.parent = GameObject.Find("TutoriWidgets").transform;
+            }
         }
     }
 

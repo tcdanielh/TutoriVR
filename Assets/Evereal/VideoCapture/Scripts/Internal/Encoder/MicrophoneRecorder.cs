@@ -77,10 +77,8 @@ namespace Evereal.VideoCapture
       // Init audio save destination
       if (captureType == CaptureType.VOD)
       {
-        audioSavePath = string.Format("{0}audio_{1}_{2}.wav",
-          saveFolderFullPath,
-          Utils.GetTimeString(),
-          Utils.GetRandomString(5));
+        audioSavePath = string.Format("{0}mic.wav",
+          saveFolderFullPath);
       }
       else if (captureType == CaptureType.LIVE)
       {

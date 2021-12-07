@@ -48,6 +48,8 @@ namespace Evereal.VRVideoPlayer
     [Tooltip("Video renderer for 180 video.")]
     [SerializeField]
     public GameObject domeRenderer;
+        [SerializeField]
+        public GameObject videoPlayerButton;
 
 #if VRVIDEOPLAYER_AVPROVIDEO || VRVIDEOPLAYER_AVPROVIDEO_V2
     // Init media player with AVProMediaPlayer
@@ -56,8 +58,8 @@ namespace Evereal.VRVideoPlayer
     // Init media player with EMTMediaPlayer
     private IMediaPlayer mediaPlayer = new EMTMediaPlayer();
 #else
-    // Init media player with UnityMediaPlayer
-    private IMediaPlayer mediaPlayer = new UnityMediaPlayer();
+        // Init media player with UnityMediaPlayer
+        private IMediaPlayer mediaPlayer = new UnityMediaPlayer();
 #endif
 
     // Video player target renderer
@@ -275,7 +277,20 @@ namespace Evereal.VRVideoPlayer
       switch (renderMode)
       {
         case RenderMode.NORMAL:
-          quadRenderer.SetActive(true);
+                    if (videoPlayerButton.GetComponent<VideoPlayerButton>().readTutori == true)
+                    {
+                        if (stereoMode == StereoMode.NONE)
+                        {
+                            quadRenderer.SetActive(true);
+                        }
+                        else if (stereoMode == StereoMode.LEFT_RIGHT)
+                        {
+                            quadRenderer.SetActive(false);
+                        }
+                    } else
+                    {
+                        quadRenderer.SetActive(true);
+                    }
 
           sphereRenderer.SetActive(false);
           cubeRenderer.SetActive(false);
