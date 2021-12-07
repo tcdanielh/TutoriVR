@@ -21,6 +21,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     private bool currentstate;
     public GameObject VideoPlayer;
     public GameObject VideoPlayer_stereo;
+    public GameObject microphone_audio;
 
     // [SerializeField] VideoCapture VC;
     // Start is called before the first frame update
@@ -35,6 +36,10 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     {
         VideoPlayer.SetActive(setting);
         VideoPlayer_stereo.SetActive(setting);
+        if (setting && microphone_audio.GetComponent<MicAudioController>().audioSource.clip != null)
+        {
+            microphone_audio.GetComponent<MicAudioController>().PlayAudioFile();
+        }
         // for (int i = 0; i < transform.childCount; i++)
         // {
         //     transform.GetChild(i).gameObject.SetActive(setting);
@@ -67,9 +72,18 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
                 VideoPlayer_stereo.GetComponent<VRVideoPlayer>().SetSource(VideoSource.ABSOLUTE_URL);
                 VideoPlayer_stereo.GetComponent<VideoPlayerCtrl>().playlist[0] = f.FullName + "/STEREO.mp4";
 
-                StreamReader reader = new StreamReader(f.FullName + "/inputs.json");
-                string inputsJson = reader.ReadToEnd();
-                reader.Close();
+                //mic handled in MicAudioController
+
+                StreamReader readerAlerts = new StreamReader(f.FullName + "/alerts.json");
+                string alertsJson = readerAlerts.ReadToEnd();
+                readerAlerts.Close();
+
+                ListLedger alertsData = JsonUtility.FromJson<ListLedger>(alertsJson);
+
+
+                StreamReader readerInputs = new StreamReader(f.FullName + "/inputs.json");
+                string inputsJson = readerInputs.ReadToEnd();
+                readerInputs.Close();
 
                 buttonLedger inputsData = JsonUtility.FromJson<buttonLedger>(inputsJson);
                 GameObject br = Instantiate(buttonRecreation, Vector3.zero, Quaternion.identity, null);

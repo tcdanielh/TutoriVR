@@ -6,6 +6,8 @@ namespace Evereal.VRVideoPlayer
 {
   public class ProgressBar : BarBase, IRunnable
   {
+        public MicAudioController micAudioController;
+
     protected override void OnClick()
     {
       float currentWidth = Vector3.Distance(startPoint.position, currentPoint);
@@ -21,6 +23,7 @@ namespace Evereal.VRVideoPlayer
             // Debug.Log(currentWidth);
             Debug.Log(progress);
             videoPlayerCtrl.videoTime = videoPlayerCtrl.videoLength * progress;
+            micAudioController.SetTime((float)videoPlayerCtrl.videoTime);
             SetProgress(progress);
         }
   }
