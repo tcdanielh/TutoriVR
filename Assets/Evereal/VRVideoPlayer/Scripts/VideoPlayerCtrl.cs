@@ -16,6 +16,7 @@ namespace Evereal.VRVideoPlayer
 
     // Video playlist
     public GameObject alertMarkerPrefab;
+    public GameObject timeMarkerPrefab;
     private ListLedger alertsData;
     public List<string> playlist = new List<string>();
     public VideoTitle videoTitle;
@@ -112,6 +113,22 @@ namespace Evereal.VRVideoPlayer
                 float percent = alert.time / totalTime;
                 o.transform.localPosition = new Vector3(startPoint.transform.localPosition.x + (percent * len), o.transform.localPosition.x, o.transform.localPosition.z);
             }
+
+            GameObject o1 = Instantiate(timeMarkerPrefab, awarenessWidgets.gameObject.transform);
+                o1.GetComponent<Image>().color = Color.black;
+               float percent1 =0.5f;
+                o1.transform.localPosition = new Vector3(startPointA.transform.localPosition.x + (percent1 * len), o1.transform.localPosition.x, o1.transform.localPosition.z);
+ GameObject o2 = Instantiate(timeMarkerPrefab, awarenessWidgets.gameObject.transform);
+                o2.GetComponent<Image>().color = Color.black;
+              //  float percent1 =0.5f;
+                o2.transform.localPosition = new Vector3(startPointA.transform.localPosition.x + (0.25f * len), o2.transform.localPosition.x, o2.transform.localPosition.z);
+ GameObject o3 = Instantiate(timeMarkerPrefab, awarenessWidgets.gameObject.transform);
+                o3.GetComponent<Image>().color = Color.black;
+              //  float percent1 =0.5f;
+                o3.transform.localPosition = new Vector3(startPointA.transform.localPosition.x + (0.75f * len), o3.transform.localPosition.x, o3.transform.localPosition.z);
+
+
+
         }
 
     #region Events
@@ -290,28 +307,38 @@ namespace Evereal.VRVideoPlayer
             }
             //if (videoTime > 0.1f) videoTime -= 0.1f;
         }
-    public void SetAlerts(int i)
+    public void SetAlerts()
     {
 
             float len = Mathf.Abs(startPointA.localPosition.x - EndPointA.localPosition.x);
             float totalTime = alertsData.totalTime;
-             List<Alert> all = new List<Alert>();
-            for (int k = i; k< alertsData.alertList.Count; k++)
-            // foreach(Alert alert in alertsData.alertList)
+            //  List<Alert> all = new List<Alert>();
+            //  int m = 0;
+            //  int k ;
+            // for (int k= 0; k< alertsData.alertList.Count; k++)
+            foreach(Alert alert in alertsData.alertList)
             {
-              Alert alert= alertsData.alertList[k];
+              // Alert alert= alertsData.alertList[k];
               if (alert.time> videoTime -30 && alert.time < videoTime + 30)
               {
+                // m++;
                 GameObject o = Instantiate(alertMarkerPrefab, awarenessWidgets.gameObject.transform);
                 Color c;
                 if (alert.color == ColoredAlert.Red) { c = Color.red; }
                 else if (alert.color == ColoredAlert.Blue) { c = Color.blue; }
                 else c = Color.yellow;
                 o.GetComponent<Image>().color = c;
-                float percent = alert.time / 60;
+                float percent = (alert.time-(float)videoTime+30) / 60;
+                // float destime = alert.time - videoTime;
                 o.transform.localPosition = new Vector3(startPointA.transform.localPosition.x + (percent * len), o.transform.localPosition.x, o.transform.localPosition.z);
+                Destroy(o,0.1f);
+              }
+              else if (alert.time > videoTime+30)
+              {
+                break;
               }
             }
+            // return 
     }
 
     public void ToggleAudioMute()
