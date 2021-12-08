@@ -4,7 +4,11 @@ namespace Evereal.VRVideoPlayer
 {
   public class ReplayButton : ButtonBase, IRunnable
   {
-    protected override void OnClick()
+        public MicAudioController micAudioController;
+        public VideoPlayerCtrl stereo_video_player;
+        public trackController trackCon;
+
+        protected override void OnClick()
     {
       videoPlayerCtrl.ReplayVideo();
     }
@@ -12,6 +16,11 @@ namespace Evereal.VRVideoPlayer
         public void Run(Vector3 currentPoint)
         {
             videoPlayerCtrl.ReplayVideo();
+            stereo_video_player.ReplayVideo();
+            trackCon.SkipToTime(0);
+            micAudioController.SetTime(0);
+            trackCon.Play();
+            micAudioController.audioSource.Play();
         }
   }
 }

@@ -49,6 +49,7 @@ public class trackController : MonoBehaviour
             {
                 if (!brushWasDown)
                 {
+                    //Debug.Log("!brushwasdown");
                     rightControllerMimic.GetComponent<Renderer>().material = buttonDownMat;
                     trail = Instantiate(trailPrefab, rightControllerMimic.transform.position, rightControllerMimic.transform.rotation, rightControllerMimic.transform);
                     trail.GetComponent<TrailRenderer>().colorGradient = GradientFromColor(buttonList[index].color);
@@ -58,11 +59,13 @@ public class trackController : MonoBehaviour
             {
                 if (brushWasDown)
                 {
+                    //Debug.Log("brushwasdown");
                     rightControllerMimic.GetComponent<Renderer>().material = buttonUpMat;
                     if (trail != null)
                     {
+                        //Debug.Log("brushwasdown2");
                         trail.transform.parent = null;
-                        Destroy(trail, trail.GetComponent<TrailRenderer>().time);
+                        Destroy(trail, 3);
                         trail = null;
                     }
                 }
@@ -98,15 +101,15 @@ public class trackController : MonoBehaviour
         int maxIndex = buttonList.Count;
         int minIndex = 0;
         
-        while (minIndex < maxIndex)
+        while (minIndex <= maxIndex)
         {
             int bestIndex = (maxIndex + minIndex) / 2;
-            if (buttonList[bestIndex].time < time && buttonList[bestIndex + 1].time > time)
+            if (buttonList[bestIndex].time <= time && buttonList[bestIndex + 1].time >= time)
             {
                 index = bestIndex;
                 return;
             }
-            else if (buttonList[bestIndex].time < time)
+            else if (buttonList[bestIndex].time <= time)
             {
                 minIndex = bestIndex;
             }

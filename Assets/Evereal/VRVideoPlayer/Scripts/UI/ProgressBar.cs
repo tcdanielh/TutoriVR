@@ -8,6 +8,7 @@ namespace Evereal.VRVideoPlayer
   {
         public MicAudioController micAudioController;
         public VideoPlayerCtrl stereo_video_player;
+        public trackController trackCon;
 
     protected override void OnClick()
     {
@@ -26,9 +27,19 @@ namespace Evereal.VRVideoPlayer
             //Debug.Log(micAudioController.audioSource.time);
             videoPlayerCtrl.videoTime = videoPlayerCtrl.videoLength * progress;
             stereo_video_player.videoTime = videoPlayerCtrl.videoLength * progress;
-            //Debug.Log("here" + videoPlayerCtrl.currentTime);
+            trackCon.SkipToTime((float)videoPlayerCtrl.videoLength * progress);
             micAudioController.SetTime((float)videoPlayerCtrl.videoLength * progress);
-            //Debug.Log(micAudioController.audioSource.time);
+            if (videoPlayerCtrl.isVideoPlaying)
+            {
+                trackCon.Play();
+                micAudioController.audioSource.Play();
+            } else if (videoPlayerCtrl.isVideoPaused)
+            {
+                trackCon.Stop();
+                micAudioController.audioSource.Stop();
+            }
+            //Debug.Log(videoPlayerCtrl.videoLength * progress);
+            //Debug.Log(trackCon.buttonList[trackCon.index].time);
             SetProgress(progress);
         }
 

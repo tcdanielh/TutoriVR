@@ -32,9 +32,9 @@ public class CollidersIffInView : MonoBehaviour
     void SetCollidersEnabled(bool setting)
     {
         if (GetComponent<Collider>() != null) GetComponent<Collider>().enabled = setting;
-        foreach (Collider c in GetComponentsInChildren<Collider>())
-        {
-            c.enabled = setting;
-        }
+        //foreach (Collider c in GetComponentsInChildren<Collider>())
+        //{
+        //    c.enabled = setting;
+        //}
     }
 }

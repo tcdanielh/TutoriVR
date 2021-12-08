@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1647499565008982853}
   - component: {fileID: 3009503741822137061}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 10000
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

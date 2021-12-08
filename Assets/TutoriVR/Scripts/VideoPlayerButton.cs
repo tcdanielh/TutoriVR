@@ -23,7 +23,9 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     public GameObject VideoPlayer_stereo;
     public GameObject microphone_audio;
     public GameObject awareness_widget;
-    public GameObject record_begin_button;
+    public GameObject perspective_widget;
+    public ReplicatorCam repCam;
+    //public GameObject record_begin_button;
 
     // [SerializeField] VideoCapture VC;
     // Start is called before the first frame update
@@ -34,11 +36,36 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
          gameObject.GetComponent<Renderer>().material = showButton;   
     }
     
-    private void SetChildrenActive(bool setting)
+    private void SetChildrenActive(bool setting, buttonLedger inputsData = null)
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(setting);
+        }
+
         VideoPlayer.SetActive(setting);
         VideoPlayer_stereo.SetActive(setting);
-        awareness_widget.SetActive(setting);
+        microphone_audio.SetActive(setting);
+
+        if (setting)
+        {
+            VideoPlayer.GetComponent<VideoPlayerCtrl>().PlayVideo();
+            VideoPlayer_stereo.GetComponent<VideoPlayerCtrl>().PlayVideo();
+            StartCoroutine(microphone_audio.GetComponent<MicAudioController>().LoadAudio());
+        } else
+        {
+            awareness_widget.SetActive(false);
+            perspective_widget.SetActive(false);
+        }
+
+
+        if (inputsData != null)
+        {
+            buttonRecreation.SetActive(setting);
+            buttonRecreation.GetComponent<trackController>().dataLedger = inputsData;
+            buttonRecreation.GetComponent<trackController>().Play();
+            //repCam.setTransform();
+        }
 
         // for (int i = 0; i < transform.childCount; i++)
         // {
@@ -74,7 +101,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
                 VideoPlayer_stereo.GetComponent<VideoPlayerCtrl>().playlist[0] = f.FullName + "/STEREO.mp4";
 
                 microphone_audio.GetComponent<MicAudioController>().soundPath = f.FullName + "/";
-                StartCoroutine(microphone_audio.GetComponent<MicAudioController>().LoadAudio());
+                //StartCoroutine(microphone_audio.GetComponent<MicAudioController>().LoadAudio());
 
                 StreamReader readerAlerts = new StreamReader(f.FullName + "/alerts.json");
                 string alertsJson = readerAlerts.ReadToEnd();
@@ -88,11 +115,11 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
                 readerInputs.Close();
 
                 buttonLedger inputsData = JsonUtility.FromJson<buttonLedger>(inputsJson);
-                GameObject br = Instantiate(buttonRecreation, Vector3.zero, Quaternion.identity, null);
-                br.GetComponent<trackController>().dataLedger = inputsData;
-                br.GetComponent<trackController>().Play();
+                //GameObject br = Instantiate(buttonRecreation, Vector3.zero, Quaternion.identity, null);
+                //br.GetComponent<trackController>().dataLedger = inputsData;
+                //br.GetComponent<trackController>().Play();
 
-                SetChildrenActive(!currentstate);
+                SetChildrenActive(!currentstate, inputsData);
             } else //read from file, only 1 video
             {
                 VideoPlayer.GetComponent<VRVideoPlayer>().SetSource(VideoSource.ABSOLUTE_URL);
@@ -104,12 +131,13 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
         currentstate = !currentstate;
         if (currentstate==false)
         {
-        gameObject.GetComponent<Renderer>().material = showButton;
-            record_begin_button.SetActive(true);
+            gameObject.GetComponent<Renderer>().material = showButton;
+            //record_begin_button.SetActive(true);
         }
         else
-        {gameObject.GetComponent<Renderer>().material = closeButton;
-            record_begin_button.SetActive(false);
+        {
+            gameObject.GetComponent<Renderer>().material = closeButton;
+            //record_begin_button.SetActive(false);
         }
     }
 }

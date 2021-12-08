@@ -45,15 +45,17 @@ public class MicAudioController : MonoBehaviour
     {
         Debug.Log("in play audio");
         //audioSource.clip = audioClip;
+        SetTime(0);
         audioSource.Play();
-        audioSource.loop = true;
     }
 
     public void SetTime(float t)
     {
+        //Debug.Log(t);
         audioSource.Pause();
         audioSource.time = t;
-        audioSource.Play();
+        //Debug.Log(audioSource.time);
+        //Debug.Log("settime");
     }
 
 }

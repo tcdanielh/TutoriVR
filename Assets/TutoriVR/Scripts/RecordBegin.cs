@@ -13,7 +13,7 @@ public class RecordBegin : MonoBehaviour, IRunnable
     [SerializeField] Material recordButton;
     [SerializeField] Material stopButton;
     [SerializeField] RecordingEvent Event;
-    public GameObject video_begin_button;
+    //public GameObject video_begin_button;
     private IAppInfo appInfo;
 
     VideoCapture[] VC;
@@ -44,7 +44,7 @@ public class RecordBegin : MonoBehaviour, IRunnable
             }
             gameObject.GetComponent<Renderer>().material = recordButton;
             Debug.Log("Save & Export");
-            video_begin_button.SetActive(true);
+            //video_begin_button.SetActive(true);
         }
         else
         {
@@ -73,7 +73,7 @@ public class RecordBegin : MonoBehaviour, IRunnable
             // VideoPlayer.instance.SetRootFolder();
             // VideoPlayer.instance.NextVideo();
             // VideoPlayer.instance.PlayVideo();
-            video_begin_button.SetActive(false);
+            //video_begin_button.SetActive(false);
             gameObject.GetComponent<Renderer>().material = stopButton;
             Debug.Log("Start Recording");
         }

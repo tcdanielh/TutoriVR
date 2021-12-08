@@ -272,8 +272,9 @@ namespace Evereal.VRVideoPlayer
       videoTime -= step;
     }
 
-    public void SkipToAlert(bool forwards)
+    public double SkipToAlert(bool forwards)
         {
+            //Debug.Log(videoTime);
             List<Alert> all = new List<Alert>();
             all.Add(new Alert(0, ColoredAlert.Red));
             all.AddRange(alertsData.alertList);
@@ -298,12 +299,21 @@ namespace Evereal.VRVideoPlayer
             //    }
             //    mid = (minAlert + maxAlert) / 2;
             //}
+            //Debug.Log(videoTime);
             if (forwards)
             {
-                videoTime = all[mid + 1].time;
+                Debug.Log(all[mid + 1].time);
+                double rTime = all[mid + 1].time;
+                Debug.Log(rTime);
+                videoTime = rTime;
+                Debug.Log(videoTime);
+                return rTime;
             } else
             {
-                videoTime = all[mid].time;
+                //Debug.Log(videoTime);
+                double rTime = all[mid].time;
+                videoTime = rTime;
+                return rTime;
             }
             //if (videoTime > 0.1f) videoTime -= 0.1f;
         }
@@ -510,14 +520,11 @@ namespace Evereal.VRVideoPlayer
 
     private void Update()
     {
-      if (isVideoPlaying)
-      {
         currentTime.SetTime(vrVideoPlayer.time);
          //currentTimeA.SetTime(vrVideoPlayer.time);
         progressBar.SetProgress((float)(vrVideoPlayer.time / vrVideoPlayer.length));
-                //progressBar.UpdateMic();
-        //SetAlerts();
-      }
+            //progressBar.UpdateMic();
+            //SetAlerts();
             SetAlerts();
         }
 
