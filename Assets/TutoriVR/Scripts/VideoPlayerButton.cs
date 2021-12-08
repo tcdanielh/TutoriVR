@@ -36,15 +36,13 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     {
         VideoPlayer.SetActive(setting);
         VideoPlayer_stereo.SetActive(setting);
-        if (setting && microphone_audio.GetComponent<MicAudioController>().audioSource.clip != null)
-        {
-            microphone_audio.GetComponent<MicAudioController>().PlayAudioFile();
-        }
+
         // for (int i = 0; i < transform.childCount; i++)
         // {
         //     transform.GetChild(i).gameObject.SetActive(setting);
         // }
     }
+
 
     public void Run(Vector3 currentpoint)
     {
@@ -72,7 +70,8 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
                 VideoPlayer_stereo.GetComponent<VRVideoPlayer>().SetSource(VideoSource.ABSOLUTE_URL);
                 VideoPlayer_stereo.GetComponent<VideoPlayerCtrl>().playlist[0] = f.FullName + "/STEREO.mp4";
 
-                //mic handled in MicAudioController
+                microphone_audio.GetComponent<MicAudioController>().soundPath = f.FullName + "/";
+                StartCoroutine(microphone_audio.GetComponent<MicAudioController>().LoadAudio());
 
                 StreamReader readerAlerts = new StreamReader(f.FullName + "/alerts.json");
                 string alertsJson = readerAlerts.ReadToEnd();

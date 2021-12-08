@@ -13,8 +13,8 @@ public class MicAudioController : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-        soundPath = Application.persistentDataPath + "/recording/capture/";
-        StartCoroutine(LoadAudio());
+        //soundPath = Application.persistentDataPath + "/recording/capture/";
+        //StartCoroutine(LoadAudio());
     }
 
     public IEnumerator LoadAudio()
@@ -24,7 +24,8 @@ public class MicAudioController : MonoBehaviour
         audioClip = request.GetAudioClip(false, true);
         audioClip.name = audioName;
         audioSource.clip = audioClip;
-        //PlayAudioFile();
+        Debug.Log(audioSource.clip);
+        PlayAudioFile();
     }
 
     private WWW GetAudioFromFile(string path, string filename)
@@ -37,7 +38,8 @@ public class MicAudioController : MonoBehaviour
 
     public void PlayAudioFile()
     {
-        audioSource.clip = audioClip;
+        Debug.Log("in play audio");
+        //audioSource.clip = audioClip;
         audioSource.Play();
         audioSource.loop = true;
     }
