@@ -21,10 +21,15 @@ namespace Evereal.VRVideoPlayer
     public VideoTitle videoTitle;
     public PlayButton playButton;
     public VideoTime currentTime;
+    
+    public VideoTime currentTimeA;
     public VideoTime totalTime;
     public ProgressBar progressBar;
+    public awarenessWidgets awarenessWidgets;
     public Transform startPoint;
     public Transform EndPoint;
+        public Transform startPointA;
+    public Transform EndPointA;
     public VolumeButton volumeButton;
     public VolumeBar volumeBar;
     public RenderModeButton normalButton;
@@ -285,6 +290,29 @@ namespace Evereal.VRVideoPlayer
             }
             //if (videoTime > 0.1f) videoTime -= 0.1f;
         }
+    public void SetAlerts(int i)
+    {
+
+            float len = Mathf.Abs(startPointA.localPosition.x - EndPointA.localPosition.x);
+            float totalTime = alertsData.totalTime;
+             List<Alert> all = new List<Alert>();
+            for (int k = i; k< alertsData.alertList.Count; k++)
+            // foreach(Alert alert in alertsData.alertList)
+            {
+              Alert alert= alertsData.alertList[k];
+              if (alert.time> videoTime -30 && alert.time < videoTime + 30)
+              {
+                GameObject o = Instantiate(alertMarkerPrefab, awarenessWidgets.gameObject.transform);
+                Color c;
+                if (alert.color == ColoredAlert.Red) { c = Color.red; }
+                else if (alert.color == ColoredAlert.Blue) { c = Color.blue; }
+                else c = Color.yellow;
+                o.GetComponent<Image>().color = c;
+                float percent = alert.time / 60;
+                o.transform.localPosition = new Vector3(startPointA.transform.localPosition.x + (percent * len), o.transform.localPosition.x, o.transform.localPosition.z);
+              }
+            }
+    }
 
     public void ToggleAudioMute()
     {
@@ -453,7 +481,9 @@ namespace Evereal.VRVideoPlayer
       if (isVideoPlaying)
       {
         currentTime.SetTime(vrVideoPlayer.time);
+         currentTimeA.SetTime(vrVideoPlayer.time);
         progressBar.SetProgress((float)(vrVideoPlayer.time / vrVideoPlayer.length));
+        SetAlerts();
       }
     }
 
