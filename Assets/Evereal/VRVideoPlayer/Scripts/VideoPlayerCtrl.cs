@@ -309,36 +309,41 @@ namespace Evereal.VRVideoPlayer
         }
     public void SetAlerts()
     {
-
-            float len = Mathf.Abs(startPointA.localPosition.x - EndPointA.localPosition.x);
-            float totalTime = alertsData.totalTime;
-            //  List<Alert> all = new List<Alert>();
-            //  int m = 0;
-            //  int k ;
-            // for (int k= 0; k< alertsData.alertList.Count; k++)
-            foreach(Alert alert in alertsData.alertList)
+            if (startPointA != null && EndPointA != null)
             {
-              // Alert alert= alertsData.alertList[k];
-              if (alert.time> videoTime -30 && alert.time < videoTime + 30)
-              {
-                // m++;
-                GameObject o = Instantiate(alertMarkerPrefab, awarenessWidgets.gameObject.transform);
-                Color c;
-                if (alert.color == ColoredAlert.Red) { c = Color.red; }
-                else if (alert.color == ColoredAlert.Blue) { c = Color.blue; }
-                else c = Color.yellow;
-                o.GetComponent<Image>().color = c;
-                float percent = (alert.time-(float)videoTime+30) / 60;
-                // float destime = alert.time - videoTime;
-                o.transform.localPosition = new Vector3(startPointA.transform.localPosition.x + (percent * len), o.transform.localPosition.x, o.transform.localPosition.z);
-                Destroy(o,0.1f);
-              }
-              else if (alert.time > videoTime+30)
-              {
-                break;
-              }
+                float len = Mathf.Abs(startPointA.localPosition.x - EndPointA.localPosition.x);
+                float totalTime = alertsData.totalTime;
+                //  List<Alert> all = new List<Alert>();
+                //  int m = 0;
+                //  int k ;
+                // for (int k= 0; k< alertsData.alertList.Count; k++)
+                foreach (Alert alert in alertsData.alertList)
+                {
+                    // Alert alert= alertsData.alertList[k];
+                    if (alert.time > videoTime - 30 && alert.time < videoTime + 30)
+                    {
+                        // m++;
+                        GameObject o = Instantiate(alertMarkerPrefab, awarenessWidgets.gameObject.transform);
+                        Color c;
+                        if (alert.color == ColoredAlert.Red) { c = Color.red; }
+                        else if (alert.color == ColoredAlert.Blue) { c = Color.blue; }
+                        else c = Color.yellow;
+                        o.GetComponent<Image>().color = c;
+                        float percent = (alert.time - (float)videoTime + 30) / 60;
+                        // float destime = alert.time - videoTime;
+                        o.transform.localPosition = new Vector3(startPointA.transform.localPosition.x + (percent * len), o.transform.localPosition.x, o.transform.localPosition.z);
+
+                        Destroy(o, 0.1f);
+
+                    }
+                    else if (alert.time > videoTime + 30)
+                    {
+                        break;
+                    }
+                }
+                // return 
             }
-            // return 
+           
     }
 
     public void ToggleAudioMute()
@@ -508,11 +513,13 @@ namespace Evereal.VRVideoPlayer
       if (isVideoPlaying)
       {
         currentTime.SetTime(vrVideoPlayer.time);
-         currentTimeA.SetTime(vrVideoPlayer.time);
+         //currentTimeA.SetTime(vrVideoPlayer.time);
         progressBar.SetProgress((float)(vrVideoPlayer.time / vrVideoPlayer.length));
-        SetAlerts();
+                //progressBar.UpdateMic();
+        //SetAlerts();
       }
-    }
+            SetAlerts();
+        }
 
     private void OnEnable()
     {

@@ -17,6 +17,11 @@ public class MicAudioController : MonoBehaviour
         //StartCoroutine(LoadAudio());
     }
 
+    private void Update()
+    {
+        //Debug.Log(audioSource.time);
+    }
+
     public IEnumerator LoadAudio()
     {
         WWW request = GetAudioFromFile("file://" + soundPath, audioName);
@@ -46,7 +51,9 @@ public class MicAudioController : MonoBehaviour
 
     public void SetTime(float t)
     {
+        audioSource.Pause();
         audioSource.time = t;
+        audioSource.Play();
     }
 
 }

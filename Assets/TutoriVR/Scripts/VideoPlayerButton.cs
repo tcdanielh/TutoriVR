@@ -22,6 +22,8 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     public GameObject VideoPlayer;
     public GameObject VideoPlayer_stereo;
     public GameObject microphone_audio;
+    public GameObject awareness_widget;
+    public GameObject record_begin_button;
 
     // [SerializeField] VideoCapture VC;
     // Start is called before the first frame update
@@ -36,6 +38,7 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
     {
         VideoPlayer.SetActive(setting);
         VideoPlayer_stereo.SetActive(setting);
+        awareness_widget.SetActive(setting);
 
         // for (int i = 0; i < transform.childCount; i++)
         // {
@@ -97,14 +100,16 @@ public class VideoPlayerButton : MonoBehaviour, IRunnable
                 SetChildrenActive(!currentstate);
             }
         }
-        
+
         currentstate = !currentstate;
         if (currentstate==false)
         {
-        gameObject.GetComponent<Renderer>().material = showButton;   
+        gameObject.GetComponent<Renderer>().material = showButton;
+            record_begin_button.SetActive(true);
         }
         else
-        {gameObject.GetComponent<Renderer>().material = closeButton;   
+        {gameObject.GetComponent<Renderer>().material = closeButton;
+            record_begin_button.SetActive(false);
         }
     }
 }

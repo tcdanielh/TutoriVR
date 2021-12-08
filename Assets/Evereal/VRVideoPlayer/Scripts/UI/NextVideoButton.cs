@@ -11,7 +11,8 @@ namespace Evereal.VRVideoPlayer
 
         public void  Run(Vector3 currentPoint)
         {
-            videoPlayerCtrl.PlayNextVideo();
+            //videoPlayerCtrl.PlayNextVideo();
+            videoPlayerCtrl.SkipToAlert(true);
         }
   }
 }

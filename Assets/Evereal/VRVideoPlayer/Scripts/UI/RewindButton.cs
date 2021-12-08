@@ -8,14 +8,14 @@ namespace Evereal.VRVideoPlayer
 
     protected override void OnClick()
     {
-            //videoPlayerCtrl.Rewind(seconds);
-            videoPlayerCtrl.SkipToAlert(false);
+            videoPlayerCtrl.Rewind(seconds);
+            //videoPlayerCtrl.SkipToAlert(false);
         }
 
         public void Run(Vector3 currentPoint)
         {
-            //videoPlayerCtrl.Rewind(seconds);
-            videoPlayerCtrl.SkipToAlert(false);
+            videoPlayerCtrl.Rewind(seconds);
+            //videoPlayerCtrl.SkipToAlert(false);
         }
   }
 }
