@@ -28,7 +28,7 @@ public class SetPlayerPositionRecreation : MonoBehaviour, IRunnableHold
         {
             transform.parent = appInfo.GetRightController();
             yield return null;
-            transform.parent = GameObject.Find("TutoriWidgets").transform;
+            transform.parent = GameObject.Find("PerspectiveWidget").transform;
 
         }
     }
@@ -37,7 +37,7 @@ public class SetPlayerPositionRecreation : MonoBehaviour, IRunnableHold
     {
         while (appInfo.GetUnusedButtonStatus() != ButtonStatus.Held)
         {
-            transform.parent = GameObject.Find("TutoriWidgets").transform;
+            transform.parent = GameObject.Find("PerspectiveWidget").transform;
             yield return null;
         }
     }

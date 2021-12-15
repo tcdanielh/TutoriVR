@@ -36794,7 +36794,7 @@ MonoBehaviour:
   VideoPlayer_stereo: {fileID: 1666997377812960}
   microphone_audio: {fileID: 1063570240}
   awareness_widget: {fileID: 25326005}
-  perspective_widget: {fileID: 0}
+  perspective_widget: {fileID: 1054656783}
   repCam: {fileID: 35861226}
 --- !u!1001 &2094189263
 PrefabInstance:
