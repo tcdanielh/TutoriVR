@@ -18541,6 +18541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: cc42fb3e6e37ecb4bb840c2214dba503, type: 2}
+  tracker: {fileID: 5533215289746426252, guid: e6292e952c6632e4d86a85aed2346e13, type: 3}
 --- !u!114 &1216812186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25547,6 +25548,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1006cbb72ff7bdc41a911ef447eab91b, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
