@@ -23,8 +23,10 @@ public class ButtonInstance
     private TiltBrush.ColorController colorcon;
     private TiltBrush.SketchSurfacePanel toolobj;
 
+    public GameObject tracker;
+
     // gets data of current frame
-    public ButtonInstance createInstance(IAppInfo appInfo, float timeStamp)
+    public ButtonInstance createInstance(IAppInfo appInfo, float timeStamp, GameObject tracker)
     {
         time = timeStamp;
         instance = appInfo;
@@ -54,8 +56,8 @@ public class ButtonInstance
         Transform lc = instance.GetLeftController();
         Transform rc = instance.GetRightController();
         Transform root = instance.GetSceneRootTransform();
-        (leftControllerPos, leftControllerRot) = getRelativePosRot(lc, root);
-        (rightControllerPos, rightControllerRot) = getRelativePosRot(rc, root);
+        (leftControllerPos, leftControllerRot) = getRelativePosRot(lc, root, tracker);
+        (rightControllerPos, rightControllerRot) = getRelativePosRot(rc, root, tracker);
         //leftControllerPos = instance.GetLeftController().position;
         //rightControllerPos = instance.GetRightController().position;
         //leftControllerRot = instance.GetLeftController().rotation;
@@ -68,13 +70,15 @@ public class ButtonInstance
         return this;
     }
 
-    private (Vector3, Quaternion) getRelativePosRot(Transform t, Transform root)
+    private (Vector3, Quaternion) getRelativePosRot(Transform t, Transform root, GameObject tracker)
     {
-        GameObject obj = GameObject.Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere), t.position, t.rotation);
+        //return (Vector3.zero, Quaternion.identity);
+        GameObject obj = GameObject.Instantiate(tracker, t.position, t.rotation);
         obj.transform.SetParent(root, true);
         Vector3 pos = obj.transform.localPosition;
         Quaternion rot = obj.transform.localRotation;
-        GameObject.Destroy(obj);
+        GameObject.DestroyImmediate(obj);
+        //Debug.Log(pos + " " + rot);
         return (pos, rot);
     }
 }

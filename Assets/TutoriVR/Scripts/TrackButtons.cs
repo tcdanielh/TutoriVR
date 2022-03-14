@@ -18,6 +18,7 @@ public class TrackButtons : RecordingEventListener
     private buttonLedger captures; //dictionary: frame to button instance class
     private ButtonInstance binstance;
     private float recordingStartTime;
+    [SerializeField] GameObject tracker;
 
     public void fStart()
     {
@@ -41,7 +42,7 @@ public class TrackButtons : RecordingEventListener
     public override void DuringRecord()
     {
         binstance = new ButtonInstance();
-        binstance.createInstance(appInfo, Time.time - recordingStartTime);
+        binstance.createInstance(appInfo, Time.time - recordingStartTime,tracker);
         captures.ledger.Add(binstance);
         //Debug.Log(JsonUtility.ToJson(binstance));
     }
