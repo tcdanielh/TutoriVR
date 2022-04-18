@@ -22,4 +22,8 @@ public interface IAppInfo
 
     Vector3 GetRecordButtonEulerAngles();
 
+    string GetSerializedAdditionalInfo();
+
+    Color GetColor(); //Color of the trail in the 3d controller recreation
+
 }

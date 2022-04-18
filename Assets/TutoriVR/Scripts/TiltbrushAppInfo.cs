@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using System;
+
+[Serializable]
+public struct additionalInfo
+{
+    public TiltBrush.BaseTool.ToolType tool;
+    public TiltBrush.BrushDescriptor brushtype;
+    public Color brushcolor;
+}
 
 public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
 {
@@ -76,4 +85,22 @@ public class TiltbrushAppInfo : MonoBehaviour, IAppInfo
     public Vector3 GetRecordButtonEulerAngles() => recButtonRot;
 
     public ButtonStatus GetUnusedButtonStatus() => unusedButtonStatus;
+
+    public string GetSerializedAdditionalInfo()
+    {
+        additionalInfo a = new additionalInfo();
+        a.brushtype = null;
+        if (TiltBrush.BrushController.m_Instance != null)
+        {
+            a.brushtype = TiltBrush.BrushController.m_Instance.ActiveBrush;
+        }
+        a.tool = GameObject.Find("SketchSurface").GetComponent<TiltBrush.SketchSurfacePanel>().ActiveToolType;
+        a.brushcolor = TiltBrush.ColorController.trackColor;
+        return JsonUtility.ToJson(a);
+    }
+
+    public Color GetColor()
+    {
+        return GameObject.Find("App").GetComponent<TiltBrush.BrushColorController>().CurrentColor;
+    }
 }

@@ -8,20 +8,22 @@ public class ButtonInstance
 {
     public float time;
     // private ?? script = script being run; --> scripts/brushcontroller ActiveBrush for brush
-    public TiltBrush.BrushDescriptor brushtype;
-    public Color brushcolor; //consider putting all the brush stuff in a list
-    public TiltBrush.BaseTool.ToolType tool;
     public Vector3 leftControllerPos;
     public Vector3 rightControllerPos;
     public Quaternion leftControllerRot;
     public Quaternion rightControllerRot;
     public bool rightTriggerDown;
     public bool leftTriggerDown;
-    public Color color;
     private IAppInfo instance;
-    //private TiltBrush.BaseSelectionTool.SelectionObject toolobj;
-    private TiltBrush.ColorController colorcon;
-    private TiltBrush.SketchSurfacePanel toolobj;
+    public string additionalInfo;
+
+    public Color color; //the trail color for the recreation video
+
+    //public TiltBrush.BaseTool.ToolType tool;
+    //public TiltBrush.BrushDescriptor brushtype;
+    //private TiltBrush.ColorController colorcon;
+    //private TiltBrush.SketchSurfacePanel toolobj;
+    //public Color brushcolor; 
 
     public GameObject tracker;
 
@@ -30,29 +32,22 @@ public class ButtonInstance
     {
         time = timeStamp;
         instance = appInfo;
-        brushtype = null;
-        //wdata = new TiltBrush.GrabWidgetData();
-        //widgetcommand = new TiltBrush.MoveWidgetCommand();
-        //gwidget = new TiltBrush.GrabWidget();
-        //toolobj = new TiltBrush.BaseSelectionTool.SelectionObject();
-        colorcon = GameObject.Find("App").GetComponent<TiltBrush.BrushColorController>();
-        color = colorcon.CurrentColor;
+        //brushtype = null;
+        //colorcon = GameObject.Find("App").GetComponent<TiltBrush.BrushColorController>();
+        //color = colorcon.CurrentColor;
         // script = check script that is running
-        if (TiltBrush.BrushController.m_Instance != null)
-        {
-            brushtype = TiltBrush.BrushController.m_Instance.ActiveBrush;
-        }
-        Debug.Log(brushtype);
-        /* if (TiltBrush.ColorController.CurrentColor.get() != null)
-        {
-            brushcolor = TiltBrush.ColorController.CurrentColor.get();
-        }
-        */
-        toolobj = GameObject.Find("SketchSurface").GetComponent<TiltBrush.SketchSurfacePanel>();
-        tool = toolobj.ActiveToolType;
-        Debug.Log(tool);
-        brushcolor = TiltBrush.ColorController.trackColor;
-        Debug.Log(brushcolor);
+        //if (TiltBrush.BrushController.m_Instance != null)
+        //{
+        //    brushtype = TiltBrush.BrushController.m_Instance.ActiveBrush;
+        //}
+        //Debug.Log(brushtype);
+        //toolobj = GameObject.Find("SketchSurface").GetComponent<TiltBrush.SketchSurfacePanel>();
+        //tool = toolobj.ActiveToolType;
+        //Debug.Log(tool);
+        //brushcolor = TiltBrush.ColorController.trackColor;
+        //Debug.Log(brushcolor);
+        additionalInfo = instance.GetSerializedAdditionalInfo();
+        color = instance.GetColor();
         Transform lc = instance.GetLeftController();
         Transform rc = instance.GetRightController();
         Transform root = instance.GetSceneRootTransform();
